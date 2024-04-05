@@ -22,6 +22,25 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!--PostgreSql-->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.3</version>
+		</dependency>
+
+		<!--JPA-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!--Java Mail Sender-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 		<!--Swagger-->
 		<dependency>
 			<groupId>org.springdoc</groupId>

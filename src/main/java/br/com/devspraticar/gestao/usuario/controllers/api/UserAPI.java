@@ -1,6 +1,6 @@
 package br.com.devspraticar.gestao.usuario.controllers.api;
 
-import br.com.devspraticar.gestao.usuario.controllers.dto.NotificationErrorDTO;
+import br.com.devspraticar.gestao.usuario.controllers.dto.ErrorMessageDTO;
 import br.com.devspraticar.gestao.usuario.controllers.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.controllers.dto.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +25,7 @@ public interface UserAPI {
         ),
         @ApiResponse(responseCode = "422", description = "Unprocessable Entity",
             content = { @Content(mediaType = APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = NotificationErrorDTO.class))
+                    schema = @Schema(implementation = ErrorMessageDTO.class))
             }
         ),
         @ApiResponse(responseCode = "500", description = "Internal Server Error",
