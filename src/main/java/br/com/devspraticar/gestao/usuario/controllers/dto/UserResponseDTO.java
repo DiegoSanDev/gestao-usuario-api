@@ -8,17 +8,21 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDTO implements Serializable {
+public class UserResponseDTO implements Serializable {
 
+    private Long id;
     private String name;
     private String email;
+    private boolean active;
     private String password;
     private LocalDate dateBirth;
+    private LocalDateTime created;
 
 }
