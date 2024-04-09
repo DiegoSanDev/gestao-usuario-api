@@ -22,9 +22,7 @@ public class UserService {
     @Transactional
     public User createPreRegistry(User user) {
         userRepository.findByEmail(user.getEmail())
-            .ifPresent(existingUser -> {
-                throw new UserAlreadyExistsException(String.format("E-mail: %s já cadastrado", user.getEmail()));
-            });
+            .ifPresent(existingUser -> { throw new UserAlreadyExistsException(); });
         user.setCreatedAt(LocalDateTime.now());
         var userSave = userRepository.save(user);
         var preRegistration = PreRegistration.builder()

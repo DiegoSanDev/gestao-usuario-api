@@ -34,4 +34,8 @@ public class ErrorMessageDTO {
         return !errors.isEmpty();
     }
 
+    public void addError(ErrorDTO errorDTO) {
+        errors.add(errorDTO);
+    }
+
 }
