@@ -21,7 +21,7 @@ public class OpenapiConfig {
                         "Esta API possibilita a criação, busca e atualização de informações dos usuários.")
                 .version("v0.0.1")
                 .contact(new Contact().name("Diego Santos").email("diegosan.dev@gmail.com")))
-            .servers(List.of(new Server().url("https://devspraticar.com.br/v1")));
+            .servers(List.of(new Server().url("http://localhost:8080/")));
     }
 
 }

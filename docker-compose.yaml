@@ -5,6 +5,7 @@ services:
     image: postgres:latest
     ports:
       - "5432:5432"
+      - "5005:5005" # Porta de depuração
     environment:
       POSTGRES_DB: DBGestaoUsuario
       POSTGRES_USER: postgres
