@@ -24,7 +24,7 @@ public class UserMapper {
             .password("********")
             .email(user.getEmail())
             .active(user.isActive())
-            .created(user.getCreated())
+            .created(user.getCreatedAt())
             .dateBirth(user.getDateBirth())
             .build();
     }
