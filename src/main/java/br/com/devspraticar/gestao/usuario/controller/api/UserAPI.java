@@ -1,8 +1,8 @@
-package br.com.devspraticar.gestao.usuario.controllers.api;
+package br.com.devspraticar.gestao.usuario.controller.api;
 
-import br.com.devspraticar.gestao.usuario.controllers.dto.ErrorMessageDTO;
-import br.com.devspraticar.gestao.usuario.controllers.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controllers.dto.UserResponseDTO;
+import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
+import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.controller.dto.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,16 +20,21 @@ public interface UserAPI {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "Created",
             content = { @Content(mediaType = APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = UserResponseDTO.class))
+                schema = @Schema(implementation = UserResponseDTO.class))
             }
         ),
         @ApiResponse(responseCode = "422", description = "Unprocessable Entity",
             content = { @Content(mediaType = APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ErrorMessageDTO.class))
+                schema = @Schema(implementation = ErrorDTO.class))
+            }
+        ),
+        @ApiResponse(responseCode = "409", description = "Conflict",
+            content = { @Content(mediaType = APPLICATION_JSON_VALUE,
+                schema = @Schema(implementation = ErrorDTO.class))
             }
         ),
         @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                content = {@Content(schema = @Schema)}
+            content = {@Content(schema = @Schema)}
         )
     })
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)

@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.models;
+package br.com.devspraticar.gestao.usuario.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

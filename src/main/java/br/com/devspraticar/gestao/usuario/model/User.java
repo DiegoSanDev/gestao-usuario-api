@@ -1,5 +1,7 @@
-package br.com.devspraticar.gestao.usuario.models;
+package br.com.devspraticar.gestao.usuario.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,10 +23,17 @@ public class User {
 
     @Id
     private Long id;
+
+    @NotBlank
     private String name;
+
+    @Email
     private String email;
-    private boolean active;
+
+    @NotBlank
     private String password;
+
+    private boolean active;
     private LocalDate dateBirth;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

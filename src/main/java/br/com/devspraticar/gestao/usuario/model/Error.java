@@ -1,10 +1,11 @@
-package br.com.devspraticar.gestao.usuario.models;
+package br.com.devspraticar.gestao.usuario.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import lombok.Setter;
 public class Error {
 
     private String detail;
-    private int httpStatuCode;
     private String description;
+    private HttpStatus httpStatus;
 
 }
