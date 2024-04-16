@@ -7,11 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorMessageType {
 
-    VALIDATION_ERROR("ERR001", "Error de validação", "Falha na validação dos dados de entrada"),
-    RESOURCE_NOT_FOUND("ERR002", "Recurso não encontrado", "Recurso solicitado não foi encontrado"),
-    DUPLICATE_EMAIL("ERR003", "E-mail duplicado", "Já existe um usuário com o mesmo endereço de e-mail fornecido");
+    VALIDATION_ERROR( "Error de validação", "Falha na validação dos dados de entrada."),
+    RESOURCE_NOT_FOUND( "Recurso não encontrado", "Recurso solicitado não foi encontrado."),
+    DUPLICATE_EMAIL( "E-mail duplicado", "Já existe um usuário com o mesmo endereço de e-mail fornecido."),
+    ERROR_SEND_EMAIL( "Falha ao enviar e-mail ", "Não foi possível enviar o e-mail de ativação de cadastro.");
 
-    private final String code;
     private final String description;
     private final String detail;
 

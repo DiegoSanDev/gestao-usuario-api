@@ -5,6 +5,7 @@ import br.com.devspraticar.gestao.usuario.model.PreRegistration;
 import br.com.devspraticar.gestao.usuario.model.User;
 import br.com.devspraticar.gestao.usuario.repository.PreRegistrationRepository;
 import br.com.devspraticar.gestao.usuario.repository.UserRepository;
+import br.com.devspraticar.gestao.usuario.service.notification.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class UserService {
     private static final int EXPIRATIONDATE_PERIOD_AT_DAY = 2;
 
+    private final EmailService emailService;
     private final UserRepository userRepository;
     private final PreRegistrationRepository preRegistrationRepository;
 
@@ -26,6 +28,7 @@ public class UserService {
         user.setCreatedAt(LocalDateTime.now());
         var userSave = userRepository.save(user);
         savePreRegistration(userSave);
+        emailService.sendEmailUser(user);
         return userSave;
     }
 

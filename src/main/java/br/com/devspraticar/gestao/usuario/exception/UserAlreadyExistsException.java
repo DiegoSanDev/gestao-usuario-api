@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 import static br.com.devspraticar.gestao.usuario.enums.ErrorMessageType.DUPLICATE_EMAIL;
 
-public class UserAlreadyExistsException extends BusinessException {
+public class UserAlreadyExistsException extends BaseErrorException {
 
     @Override
     public Error create() {

@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestao.usuario.controller.exception;
 
 import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
-import br.com.devspraticar.gestao.usuario.exception.BusinessException;
+import br.com.devspraticar.gestao.usuario.exception.BaseErrorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,8 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = BusinessException.class)
-    public ResponseEntity<ErrorDTO> errorBaseException(BusinessException exception) {
+    @ExceptionHandler(value = BaseErrorException.class)
+    public ResponseEntity<ErrorDTO> errorBaseException(BaseErrorException exception) {
         var error = exception.getError();
         var errorDTO = ErrorDTO.builder()
             .detail(error.getDetail())

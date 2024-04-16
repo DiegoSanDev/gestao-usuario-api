@@ -6,11 +6,11 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Getter
-public abstract class BusinessException extends RuntimeException implements Serializable {
+public abstract class BaseErrorException extends RuntimeException implements Serializable {
 
     private final transient Error error;
 
-    protected BusinessException() {
+    protected BaseErrorException() {
         this.error = create();
     }
 
