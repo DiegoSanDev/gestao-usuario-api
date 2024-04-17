@@ -4,7 +4,7 @@ import br.com.devspraticar.gestao.usuario.model.Error;
 
 import static br.com.devspraticar.gestao.usuario.enums.ErrorMessageType.ERROR_SEND_EMAIL;
 
-public class MailSendException extends BaseErrorException {
+public class PreRegistryErrorException extends BaseErrorException {
 
     @Override
     public Error create() {

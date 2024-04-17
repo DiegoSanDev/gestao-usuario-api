@@ -4,6 +4,7 @@ import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
 import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.controller.dto.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -21,6 +22,11 @@ public interface UserAPI {
         @ApiResponse(responseCode = "201", description = "Created",
             content = { @Content(mediaType = APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = UserResponseDTO.class))
+            },
+            headers = {
+                @Header(name = "location", schema = @Schema(type = "string"),
+                    description = "Local onde o registro cadastrado pode ser encontrado.",
+                    example = "/v1/users/1")
             }
         ),
         @ApiResponse(responseCode = "422", description = "Unprocessable Entity",

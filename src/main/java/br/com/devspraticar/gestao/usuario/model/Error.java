@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
@@ -16,6 +15,5 @@ public class Error {
 
     private String detail;
     private String description;
-    private HttpStatus httpStatus;
 
 }

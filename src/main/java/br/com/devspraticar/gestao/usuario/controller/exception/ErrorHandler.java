@@ -2,7 +2,11 @@ package br.com.devspraticar.gestao.usuario.controller.exception;
 
 import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
 import br.com.devspraticar.gestao.usuario.exception.BaseErrorException;
+import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
+import br.com.devspraticar.gestao.usuario.exception.MailSendException;
+import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,14 +16,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = BaseErrorException.class)
-    public ResponseEntity<ErrorDTO> errorBaseException(BaseErrorException exception) {
-        var error = exception.getError();
+    @ExceptionHandler(value = { MailSendException.class, PreRegistryErrorException.class })
+    public ResponseEntity<ErrorDTO> errorException(BaseErrorException exception) {
+        log.error("errorException: {}", exception.getError());
         var errorDTO = ErrorDTO.builder()
-            .detail(error.getDetail())
-            .description(error.getDescription())
+            .detail(exception.getError().getDetail())
+            .description(exception.getError().getDescription())
             .build();
-        return ResponseEntity.status(error.getHttpStatus()).body(errorDTO);
+        return ResponseEntity.unprocessableEntity().body(errorDTO);
+    }
+
+    @ExceptionHandler(value = { DuplicateEmailException.class })
+    public ResponseEntity<ErrorDTO> duplicateEmailException(DuplicateEmailException exception) {
+        log.error("errorException: {}", exception.getError());
+        var errorDTO = ErrorDTO.builder()
+                .detail(exception.getError().getDetail())
+                .description(exception.getError().getDescription())
+                .build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorDTO);
     }
 
     @ExceptionHandler(value = InputValidationException.class)
