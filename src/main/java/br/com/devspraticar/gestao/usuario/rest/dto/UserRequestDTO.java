@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.controller.dto;
+package br.com.devspraticar.gestao.usuario.rest.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

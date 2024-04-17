@@ -1,6 +1,6 @@
-package br.com.devspraticar.gestao.usuario.controller.exception;
+package br.com.devspraticar.gestao.usuario.rest.exception;
 
-import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.ErrorDTO;
 import lombok.Getter;
 
 @Getter

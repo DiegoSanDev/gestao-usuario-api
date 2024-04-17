@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestao.usuario.mapper;
 
-import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controller.dto.UserResponseDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
 import br.com.devspraticar.gestao.usuario.model.User;
 import lombok.experimental.UtilityClass;
 

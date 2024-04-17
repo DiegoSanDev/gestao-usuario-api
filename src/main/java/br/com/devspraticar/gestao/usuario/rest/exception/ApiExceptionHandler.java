@@ -1,6 +1,6 @@
-package br.com.devspraticar.gestao.usuario.controller.exception;
+package br.com.devspraticar.gestao.usuario.rest.exception;
 
-import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.ErrorDTO;
 import br.com.devspraticar.gestao.usuario.exception.BaseErrorException;
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
 import br.com.devspraticar.gestao.usuario.exception.MailSendException;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @Slf4j
 @ControllerAdvice
-public class ErrorHandler extends ResponseEntityExceptionHandler {
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { MailSendException.class, PreRegistryErrorException.class })
     public ResponseEntity<ErrorDTO> errorException(BaseErrorException exception) {
