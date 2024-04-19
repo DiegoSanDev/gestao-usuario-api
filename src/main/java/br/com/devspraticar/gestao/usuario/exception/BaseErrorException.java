@@ -3,17 +3,15 @@ package br.com.devspraticar.gestao.usuario.exception;
 import br.com.devspraticar.gestao.usuario.model.Error;
 import lombok.Getter;
 
-import java.io.Serializable;
+public abstract class BaseErrorException extends RuntimeException {
 
-@Getter
-public abstract class BaseErrorException extends RuntimeException implements Serializable {
-
-    private final transient Error error;
+    @Getter
+    private final Error error;
 
     protected BaseErrorException() {
         this.error = create();
     }
 
-    public abstract Error create();
+    protected abstract Error create();
 
 }

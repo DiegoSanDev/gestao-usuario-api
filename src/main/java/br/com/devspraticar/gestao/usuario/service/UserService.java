@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestao.usuario.service;
 
-import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
+import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
 import br.com.devspraticar.gestao.usuario.model.PreRegistration;
 import br.com.devspraticar.gestao.usuario.model.User;
 import br.com.devspraticar.gestao.usuario.repository.PreRegistrationRepository;
@@ -34,7 +34,7 @@ public class UserService {
             userSave = userRepository.save(user);
             savePreRegistration(userSave);
         } catch (Exception e) {
-            log.error("Erro sao criar o pré-cadastro. {}", user, e);
+            log.error("Erro ao criar o pré-cadastro. {}", user, e);
             throw new PreRegistryErrorException();
         }
         emailService.sendEmailUser(user);

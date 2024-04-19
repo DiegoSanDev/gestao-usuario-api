@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestao.usuario.validation;
 
-import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controller.exception.InputValidationException;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.rest.exception.InputValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;

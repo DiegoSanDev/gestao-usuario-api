@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.controller.dto;
+package br.com.devspraticar.gestao.usuario.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -26,5 +26,6 @@ public class UserResponseDTO implements Serializable {
     private String password;
     private LocalDate dateBirth;
     private LocalDateTime created;
+    private LocalDateTime updated;
 
 }

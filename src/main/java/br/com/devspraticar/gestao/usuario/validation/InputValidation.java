@@ -1,9 +1,9 @@
 package br.com.devspraticar.gestao.usuario.validation;
 
-import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
-import br.com.devspraticar.gestao.usuario.controller.dto.ErrorFieldDTO;
-import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controller.exception.InputValidationException;
+import br.com.devspraticar.gestao.usuario.rest.dto.ErrorDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.ErrorFieldDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.rest.exception.InputValidationException;
 import br.com.devspraticar.gestao.usuario.enums.ErrorMessageType;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;

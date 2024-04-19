@@ -1,10 +1,11 @@
 package br.com.devspraticar.gestao.usuario.controller;
 
-import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controller.dto.UserResponseDTO;
 import br.com.devspraticar.gestao.usuario.model.User;
-import br.com.devspraticar.gestao.usuario.validation.InputValidation;
+import br.com.devspraticar.gestao.usuario.rest.controller.UserController;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
 import br.com.devspraticar.gestao.usuario.service.UserService;
+import br.com.devspraticar.gestao.usuario.validation.InputValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
