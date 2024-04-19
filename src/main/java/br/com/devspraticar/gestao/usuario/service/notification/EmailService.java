@@ -31,16 +31,17 @@ public class EmailService {
     }
 
     private String createMessageText(User user) {
-        var message = new StringBuilder("Olá,");
-        message.append(user.getName()).append(".")
-            .append("Recebemos sua solicitação de cadastro nos canais digitais.")
-            .append("Para utilizar  nossos serviços online, é essencial que ative seu cadastro através do link fornecido abaixo:")
-            .append("Ativar Cadastro")
-            .append("Caso não tenha solicitado este cadastro, por favor, ignore este e-mail.")
-            .append("Atenciosamente,")
-            .append(" ")
-            .append("Equipe DevsPraticar");
-        return message.toString();
+        return "<html>" +
+                "<body>" +
+                "<p>Olá, " + user.getName() + ",</p>" +
+                "<p>Recebemos sua solicitação de cadastro nos canais digitais.</p>" +
+                "<p>Para utilizar nossos serviços online, é essencial que ative seu cadastro através do link fornecido abaixo:</p>" +
+                "<p><a href=\"link_para_ativar_cadastro\">Ativar Cadastro</a></p>" +
+                "<p>Caso não tenha solicitado este cadastro, por favor, ignore este e-mail.</p>" +
+                "<p>Atenciosamente,</p>" +
+                "<p>Equipe DevsPraticar</p>" +
+                "</body>" +
+                "</html>";
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.service;
+package br.com.devspraticar.gestao.usuario.validation;
 
 import br.com.devspraticar.gestao.usuario.controller.dto.ErrorDTO;
 import br.com.devspraticar.gestao.usuario.controller.dto.ErrorFieldDTO;

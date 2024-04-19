@@ -4,7 +4,7 @@ import br.com.devspraticar.gestao.usuario.controller.api.UserAPI;
 import br.com.devspraticar.gestao.usuario.controller.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.controller.dto.UserResponseDTO;
 import br.com.devspraticar.gestao.usuario.mapper.UserMapper;
-import br.com.devspraticar.gestao.usuario.service.InputValidation;
+import br.com.devspraticar.gestao.usuario.validation.InputValidation;
 import br.com.devspraticar.gestao.usuario.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
