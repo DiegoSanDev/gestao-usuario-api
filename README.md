@@ -1,23 +1,26 @@
 # **API para Gerenciamento de Usuários**
 
+<p>
 API para gerenciamento de cadastro de usuários.
 Esta API possibilita a criação, busca e atualização de informações dos usuários.
+</p>
 
 ## **Tecnologias**
 
-| Tecnologia    | Versão  |
-|---------------|---------|
-| Java          | 17.0.10 |
-|Spring Boot    | 3.2.4   |
-|Maven          | 3.9.0   |
-|Docker         | 25.0.3  |
-|Docker Compose | 3.2.4   |
-|PostgreSQL     | 3.2.4   |
+| Tecnologia     | Versão  | Documentação                               |
+|----------------|---------|--------------------------------------------|
+| Java           | 17.0.10 | https://docs.oracle.com/en/java/javase/17/ |
+| Spring Boot    | 3.2.4   | https://spring.io/projects/spring-boot     |
+| Maven          | 3.9.0   | https://maven.apache.org/                  |
+| Docker         | 25.0.3  | https://docs.docker.com/                   |
+| Docker Compose | 3.2.4   | https://docs.docker.com/compose/           |
+| PostgreSQL     | 3.2.4   | https://www.postgresql.org/                |
+| JUnit          | 5.10.2  | https://junit.org/junit5/                  |
 
 ## **Executar o projeto**
 
-- docker-compose up --build ou docker-compose up 
-- mvn spring-boot:run
+- <b>docker-compose up --build</b> ou <b>docker-compose up</b> 
+- <b>mvn spring-boot:run</b>
 
 
 ## **Alguns comandos do Docker Compose**
@@ -39,7 +42,7 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
         </ul>
     </li>
     <li>
-        <b>docker-compose --build</b>
+        <b>docker-compose build</b>
         <ul>
             <li>
                 Este comando constrói ou reconstrói as imagens dos serviços definidos no arquivo <code>docker-compose.yaml</code>.
