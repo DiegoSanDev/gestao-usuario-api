@@ -1,6 +1,6 @@
 package br.com.devspraticar.gestao.usuario.controller;
 
-import br.com.devspraticar.gestao.usuario.model.User;
+import br.com.devspraticar.gestao.usuario.MockUtils;
 import br.com.devspraticar.gestao.usuario.rest.controller.UserController;
 import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
@@ -38,8 +38,7 @@ class UserControllerTest {
     void shouldCreatePreRegistry_Success() {
         // Arrange
         var requestDTO = new UserRequestDTO();
-        var user = new User();
-        user.setId(1L);
+        var user = MockUtils.getUserMock();
         var expectedResponseDTO = new UserResponseDTO();
         expectedResponseDTO.setId(user.getId());
         doNothing().when(inputValidation).validateUserRequest(requestDTO);
@@ -50,7 +49,7 @@ class UserControllerTest {
         verify(inputValidation).validateUserRequest(requestDTO);
         verify(userService).createPreRegistry(ArgumentMatchers.any());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(URI.create("/v1/users/1"), response.getHeaders().getLocation());
+        assertEquals(URI.create("/v1/users/" + user.getId()), response.getHeaders().getLocation());
     }
 
 }

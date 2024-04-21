@@ -1,15 +1,13 @@
 package br.com.devspraticar.gestao.usuario.mapper;
 
-import br.com.devspraticar.gestao.usuario.model.User;
+import br.com.devspraticar.gestao.usuario.MockUtils;
 import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
-import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserMapperTest {
@@ -35,16 +33,7 @@ class UserMapperTest {
     @Test
     void shouldMapToResponse() {
         //Arrange
-        var user = User.builder()
-            .active(Boolean.TRUE)
-            .dateBirth(LocalDate.now())
-            .createdAt(LocalDateTime.now())
-            .updatedAt(LocalDateTime.now())
-            .name(randomAlphabetic(33))
-            .email(randomAlphanumeric(30))
-            .password(randomAlphabetic(12))
-            .id(Long.parseLong(randomNumeric(2)))
-            .build();
+        var user = MockUtils.getUserMock();
         //Act
         var result = UserMapper.toResponse(user);
         //Assert

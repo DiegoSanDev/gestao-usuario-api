@@ -4,7 +4,6 @@ import br.com.devspraticar.gestao.usuario.exception.MailSendException;
 import br.com.devspraticar.gestao.usuario.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class EmailService {
             message.setText(createMessageText(user));
             message.setSubject("Ativar Cadastro de Usuario");
             javaMailSender.send(message);
-        } catch (MailException e) {
+        } catch (Exception e) {
             log.error("Erro ao tentar enviar email. {}", user, e);
             throw new MailSendException();
         }

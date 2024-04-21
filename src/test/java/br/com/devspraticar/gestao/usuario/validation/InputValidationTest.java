@@ -3,6 +3,7 @@ package br.com.devspraticar.gestao.usuario.validation;
 import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.rest.exception.InputValidationException;
 import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Path;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,6 +27,12 @@ class InputValidationTest {
 
     @Mock
     private Validator validator;
+
+    @Mock
+    private Path path;
+
+    @Mock
+    private ConstraintViolation constraintViolation;
 
     @InjectMocks
     private InputValidation inputValidation;
@@ -38,43 +44,28 @@ class InputValidationTest {
 
     @Test
     void testValidateUserRequest_NoViolations() {
-        // Mock input data
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
-
-        // Mock validation
+        //Arrange
+        var userRequestDTO = new UserRequestDTO();
         when(validator.validate(userRequestDTO)).thenReturn(Set.of());
-
-        // Perform the test
+        //Act - Assert
         assertDoesNotThrow(() -> inputValidation.validateUserRequest(userRequestDTO));
-
-        // Verify interactions
         verify(validator).validate(userRequestDTO);
     }
 
     @Test
     void testValidateUserRequest_WithViolations() {
-        // Mock input data
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
-
-        // Mock violation
-        ConstraintViolation violation = mock(ConstraintViolation.class);
-        when(violation.getMessage()).thenReturn("O campo 'name' deve ser informado.");
-        when(violation.getPropertyPath().toString()).thenReturn("name");
-
-        // Mock validation
-        when(validator.validate(userRequestDTO)).thenReturn(Set.of(violation));
-
-        // Perform the test
+        //Arrange
+        var userRequestDTO = new UserRequestDTO();
+        when(constraintViolation.getMessage()).thenReturn("O campo 'name' deve ser informado.");
+        when(constraintViolation.getPropertyPath()).thenReturn(path);
+        when(validator.validate(userRequestDTO)).thenReturn(Set.of(constraintViolation));
+        // Act
         InputValidationException exception = assertThrows(InputValidationException.class, () -> inputValidation.validateUserRequest(userRequestDTO));
-
-        // Verify interactions
+        //Assert
         verify(validator).validate(userRequestDTO);
-
-        // Assert the exception message
         assertNotNull(exception.getErrorDTO());
         assertFalse(exception.getErrorDTO().getErrors().isEmpty());
         assertEquals("O campo 'name' deve ser informado.", exception.getErrorDTO().getErrors().get(0).getMessage());
     }
-
 
 }
