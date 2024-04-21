@@ -1,5 +1,7 @@
-package br.com.devspraticar.gestao.usuario.controllers.dto;
+package br.com.devspraticar.gestao.usuario.rest.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,9 +18,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UserRequestDTO implements Serializable {
 
+    @NotBlank(message = "O campo 'name' deve ser informado.")
     private String name;
+
+    @NotBlank(message = "O campo 'email' deve ser informado.")
+    @Email(message = "O endereço de email fornecido não está em um formato válido.")
     private String email;
+
+    @NotBlank(message = "O campo 'password' deve ser informado.")
     private String password;
+
     private LocalDate dateBirth;
 
 }

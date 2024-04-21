@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.models;
+package br.com.devspraticar.gestao.usuario.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,17 +15,13 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Table("pre_registration")
+public class PreRegistration {
 
     @Id
     private Long id;
-    private String name;
-    private String email;
-    private boolean active;
-    private String password;
-    private LocalDate dateBirth;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Long userId;
+    private String hash;
+    private LocalDateTime expirationDate;
 
 }

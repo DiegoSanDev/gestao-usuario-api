@@ -5,29 +5,13 @@ services:
     image: postgres:latest
     ports:
       - "5432:5432"
-      - "5005:5005" # Porta de depuração
     environment:
       POSTGRES_DB: DBGestaoUsuario
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  spring-boot-app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/DBGestaoUsuario
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
 networks:
   default:
     driver: bridge
     name: gestao-usaurio-api
-volumes:
-  postgres_data:

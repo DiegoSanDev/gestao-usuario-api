@@ -1,5 +1,6 @@
-package br.com.devspraticar.gestao.usuario.controllers.dto;
+package br.com.devspraticar.gestao.usuario.rest.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponseDTO implements Serializable {
 
     private Long id;
@@ -24,5 +26,6 @@ public class UserResponseDTO implements Serializable {
     private String password;
     private LocalDate dateBirth;
     private LocalDateTime created;
+    private LocalDateTime updated;
 
 }

@@ -1,27 +1,34 @@
-package br.com.devspraticar.gestao.usuario.models;
+package br.com.devspraticar.gestao.usuario.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("pre_registration")
-public class PreRegistration {
+@Table(name = "users")
+public class User {
 
     @Id
     private Long id;
-    private Long userId;
-    private String hash;
-    private LocalDateTime expirationDate;
+    private String name;
+    private String email;
+    private boolean active;
+    private String password;
+    private LocalDate dateBirth;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 }

@@ -1,17 +1,16 @@
-package br.com.devspraticar.gestao.usuario.controllers;
+package br.com.devspraticar.gestao.usuario.rest.controller;
 
-import br.com.devspraticar.gestao.usuario.controllers.api.UserAPI;
-import br.com.devspraticar.gestao.usuario.controllers.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controllers.dto.UserResponseDTO;
 import br.com.devspraticar.gestao.usuario.mapper.UserMapper;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
+import br.com.devspraticar.gestao.usuario.validation.InputValidation;
 import br.com.devspraticar.gestao.usuario.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.http.HttpStatus.CREATED;
 
 @Tag(name = "USERS")
 @RestController
@@ -20,11 +19,13 @@ import static org.springframework.http.HttpStatus.CREATED;
 public class UserController implements UserAPI {
 
     private final UserService userService;
+    private final InputValidation inputValidation;
 
     @Override
     public ResponseEntity<UserResponseDTO> createPreRegistry(UserRequestDTO body) {
+        inputValidation.validateUserRequest(body);
         var user = userService.createPreRegistry(UserMapper.toDomain(body));
-        return ResponseEntity.status(CREATED).body(UserMapper.toResponse(user));
+        return ResponseEntity.created(URI.create(String.format("/v1/users/%d", user.getId()))).body(UserMapper.toResponse(user));
     }
 
 }

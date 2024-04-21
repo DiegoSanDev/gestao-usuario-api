@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestao.usuario.mapper;
 
-import br.com.devspraticar.gestao.usuario.controllers.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.controllers.dto.UserResponseDTO;
-import br.com.devspraticar.gestao.usuario.models.User;
+import br.com.devspraticar.gestao.usuario.model.User;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -25,6 +25,7 @@ public class UserMapper {
             .email(user.getEmail())
             .active(user.isActive())
             .created(user.getCreatedAt())
+            .updated(user.getUpdatedAt())
             .dateBirth(user.getDateBirth())
             .build();
     }
