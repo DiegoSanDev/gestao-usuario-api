@@ -6,6 +6,7 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 ## **Tecnologias**
 
 | Tecnologia    | Versão  |
+|---------------|---------|
 | Java          | 17.0.10 |
 |Spring Boot    | 3.2.4   |
 |Maven          | 3.9.0   |
