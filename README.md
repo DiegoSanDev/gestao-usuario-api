@@ -14,7 +14,7 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 | Maven          | 3.9.0   | https://maven.apache.org/                  |
 | Docker         | 25.0.3  | https://docs.docker.com/                   |
 | Docker Compose | 3.2.4   | https://docs.docker.com/compose/           |
-| PostgreSQL     | 3.2.4   | https://www.postgresql.org/                |
+| PostgreSQL     | 42.7.3  | https://www.postgresql.org/                |
 | JUnit          | 5.10.2  | https://junit.org/junit5/                  |
 
 ## **Executar o projeto**
