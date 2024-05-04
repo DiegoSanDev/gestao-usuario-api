@@ -1,6 +1,6 @@
 package br.com.devspraticar.gestao.usuario;
 
-import br.com.devspraticar.gestao.usuario.model.User;
+import br.com.devspraticar.gestao.usuario.domain.model.User;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.RandomStringUtils;
 

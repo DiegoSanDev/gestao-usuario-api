@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.enums;
+package br.com.devspraticar.gestao.usuario.domain.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

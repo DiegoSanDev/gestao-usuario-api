@@ -1,12 +1,12 @@
-package br.com.devspraticar.gestao.usuario.service;
+package br.com.devspraticar.gestao.usuario.domain.service;
 
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
 import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
-import br.com.devspraticar.gestao.usuario.model.PreRegistration;
-import br.com.devspraticar.gestao.usuario.model.User;
-import br.com.devspraticar.gestao.usuario.repository.PreRegistrationRepository;
-import br.com.devspraticar.gestao.usuario.repository.UserRepository;
-import br.com.devspraticar.gestao.usuario.service.notification.EmailService;
+import br.com.devspraticar.gestao.usuario.domain.model.PreRegistration;
+import br.com.devspraticar.gestao.usuario.domain.model.User;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.PreRegistrationRepository;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.UserRepository;
+import br.com.devspraticar.gestao.usuario.domain.service.notification.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,8 @@ public class UserService {
     private void savePreRegistration(User user) {
         var preRegistration = PreRegistration.builder()
             .userId(user.getId())
-            .hash(UUID.randomUUID().toString())
+            .active(Boolean.TRUE)
+            .activationKey(UUID.randomUUID())
             .expirationDate(LocalDateTime.now()
                 .plusDays(EXPIRATIONDATE_PERIOD_AT_DAY))
             .build();

@@ -1,7 +1,7 @@
-package br.com.devspraticar.gestao.usuario.service.notification;
+package br.com.devspraticar.gestao.usuario.domain.service.notification;
 
 import br.com.devspraticar.gestao.usuario.exception.MailSendException;
-import br.com.devspraticar.gestao.usuario.model.User;
+import br.com.devspraticar.gestao.usuario.domain.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;

@@ -1,10 +1,10 @@
-package br.com.devspraticar.gestao.usuario.rest.controller;
+package br.com.devspraticar.gestao.usuario.presentation.controller;
 
-import br.com.devspraticar.gestao.usuario.mapper.UserMapper;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
-import br.com.devspraticar.gestao.usuario.validation.InputValidation;
-import br.com.devspraticar.gestao.usuario.service.UserService;
+import br.com.devspraticar.gestao.usuario.infrastructure.mapper.UserMapper;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserResponseDTO;
+import br.com.devspraticar.gestao.usuario.presentation.validation.InputValidation;
+import br.com.devspraticar.gestao.usuario.domain.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;

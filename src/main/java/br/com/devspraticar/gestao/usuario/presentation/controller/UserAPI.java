@@ -1,8 +1,8 @@
-package br.com.devspraticar.gestao.usuario.rest.controller;
+package br.com.devspraticar.gestao.usuario.presentation.controller;
 
-import br.com.devspraticar.gestao.usuario.rest.dto.ErrorDTO;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.ErrorDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.Content;

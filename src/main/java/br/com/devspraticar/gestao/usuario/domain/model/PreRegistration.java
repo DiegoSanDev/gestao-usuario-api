@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.model;
+package br.com.devspraticar.gestao.usuario.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,7 +22,8 @@ public class PreRegistration {
     @Id
     private Long id;
     private Long userId;
-    private String hash;
+    private boolean active;
+    private UUID activationKey;
     private LocalDateTime expirationDate;
 
 }

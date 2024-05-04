@@ -1,6 +1,6 @@
-package br.com.devspraticar.gestao.usuario.repository;
+package br.com.devspraticar.gestao.usuario.infrastructure.repository;
 
-import br.com.devspraticar.gestao.usuario.model.User;
+import br.com.devspraticar.gestao.usuario.domain.model.User;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

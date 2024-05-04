@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestao.usuario.exception;
 
-import br.com.devspraticar.gestao.usuario.model.Error;
+import br.com.devspraticar.gestao.usuario.domain.model.Error;
 
-import static br.com.devspraticar.gestao.usuario.enums.ErrorMessageType.ERROR_SEND_EMAIL;
+import static br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType.ERROR_SEND_EMAIL;
 
 public class PreRegistryErrorException extends BaseErrorException {
 

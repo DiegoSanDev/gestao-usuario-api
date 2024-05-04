@@ -1,6 +1,7 @@
 package br.com.devspraticar.gestao.usuario.service.notification;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
+import br.com.devspraticar.gestao.usuario.domain.service.notification.EmailService;
 import br.com.devspraticar.gestao.usuario.exception.MailSendException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

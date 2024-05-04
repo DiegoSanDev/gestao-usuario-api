@@ -1,13 +1,14 @@
 package br.com.devspraticar.gestao.usuario.service;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
+import br.com.devspraticar.gestao.usuario.domain.service.UserService;
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
 import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
-import br.com.devspraticar.gestao.usuario.model.PreRegistration;
-import br.com.devspraticar.gestao.usuario.model.User;
-import br.com.devspraticar.gestao.usuario.repository.PreRegistrationRepository;
-import br.com.devspraticar.gestao.usuario.repository.UserRepository;
-import br.com.devspraticar.gestao.usuario.service.notification.EmailService;
+import br.com.devspraticar.gestao.usuario.domain.model.PreRegistration;
+import br.com.devspraticar.gestao.usuario.domain.model.User;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.PreRegistrationRepository;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.UserRepository;
+import br.com.devspraticar.gestao.usuario.domain.service.notification.EmailService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

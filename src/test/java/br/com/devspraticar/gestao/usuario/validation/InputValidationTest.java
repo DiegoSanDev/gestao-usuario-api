@@ -1,7 +1,8 @@
 package br.com.devspraticar.gestao.usuario.validation;
 
-import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.rest.exception.InputValidationException;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.presentation.exception.InputValidationException;
+import br.com.devspraticar.gestao.usuario.presentation.validation.InputValidation;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Path;
 import jakarta.validation.Validator;

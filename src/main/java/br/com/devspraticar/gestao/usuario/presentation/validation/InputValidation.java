@@ -1,10 +1,10 @@
-package br.com.devspraticar.gestao.usuario.validation;
+package br.com.devspraticar.gestao.usuario.presentation.validation;
 
-import br.com.devspraticar.gestao.usuario.rest.dto.ErrorDTO;
-import br.com.devspraticar.gestao.usuario.rest.dto.ErrorFieldDTO;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.rest.exception.InputValidationException;
-import br.com.devspraticar.gestao.usuario.enums.ErrorMessageType;
+import br.com.devspraticar.gestao.usuario.presentation.dto.ErrorDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.ErrorFieldDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.presentation.exception.InputValidationException;
+import br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
