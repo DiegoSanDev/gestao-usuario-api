@@ -22,8 +22,9 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 - <b>docker-compose up --build</b> ou <b>docker-compose up</b>
 - <b>mvn spring-boot:run</b>
 - 
-# Aquitetura Macro
+## Diagrama de Arquitetura
 
+```plaintext
 +--------------------------------------------------------+
 |                   Aplicação Spring Boot                |
 |                                                        |
