@@ -21,7 +21,7 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 
 - <b>docker-compose up --build</b> ou <b>docker-compose up</b>
 - <b>mvn spring-boot:run</b>
-- 
+
 ## Diagrama de Arquitetura
 
 ```plaintext
@@ -78,22 +78,25 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 |   +-----------------------------------------------+    |
 |                                                        |
 +--------------------------------------------------------+
+```
 
-## **Camada de Apresentação**
+### **Camada de Apresentação**
 <p>
 Esta camada lida com a interação do usuário com a aplicação. Ela contém os controladores RESTful, que recebem as solicitações HTTP e enviam as respostas de volta ao cliente. 
 Também inclui classes DTO para transferir dados entre a camada de apresentação e outras camadas, exceções específicas do controlador para lidar com erros e validações para validar os dados de entrada.
 </p>
 
-## **Camada de Domínio**
+### **Camada de Domínio**
 <p>
 Esta camada contém os modelos de dados e a lógica de negócios da aplicação. Os enums representam constantes ou estados específicos do domínio. 
-A classe de serviço contém a lógica de negócios principal da aplicação
+A classe de serviço contém a lógica de negócios principal da aplicação.
 </p>
 
-## **Camada de Infraestrutura**
+### **Camada de Infraestrutura**
+<p>
 Esta camada lida com o acesso a dados e a integração com sistemas externos. Ela inclui os mapeadores para converter entre objetos DTO e entidades de domínio,
 bem como os repositórios para interagir com o banco de dados.
+</p>
 
 ## Estrutura de Pastas do Projeto
 - **config/**: Contém classes de configuação da aplicação
