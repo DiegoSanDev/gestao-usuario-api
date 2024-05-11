@@ -3,9 +3,11 @@ package br.com.devspraticar.gestao.usuario.exception;
 import br.com.devspraticar.gestao.usuario.domain.model.Error;
 import lombok.Getter;
 
-public abstract class BaseErrorException extends RuntimeException {
+import java.io.Serializable;
 
-    @Getter
+@Getter
+public abstract class BaseErrorException extends RuntimeException implements Serializable {
+
     private final Error error;
 
     protected BaseErrorException() {

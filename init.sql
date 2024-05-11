@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS pre_registration (
 	user_id INTEGER NOT NULL,
 	activation_key UUID NOT NULL,
 	expiration_date TIMESTAMP NOT NULL,
-	active BOOLEAN NOT NULL DEFAULT FALSE,
-	CONSTRAINT fk_user_id
-	    FOREIGN KEY (user_id) REFERENCES users(id)
+	active BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+ALTER TABLE pre_registration ADD CONSTRAINT fk_user_id
+FOREIGN KEY (user_id) REFERENCES users(id);

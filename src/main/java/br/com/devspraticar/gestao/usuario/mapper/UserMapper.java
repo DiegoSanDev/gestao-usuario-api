@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.infrastructure.mapper;
+package br.com.devspraticar.gestao.usuario.mapper;
 
 import br.com.devspraticar.gestao.usuario.domain.model.User;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;

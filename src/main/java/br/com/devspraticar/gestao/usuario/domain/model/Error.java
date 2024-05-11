@@ -5,13 +5,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Error {
+public class Error implements Serializable {
 
     private String detail;
     private String description;

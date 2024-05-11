@@ -7,15 +7,17 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 
 ## **Tecnologias**
 
-| Tecnologia     | Versão  | Documentação                               |
-|----------------|---------|--------------------------------------------|
-| Java           | 17.0.10 | https://docs.oracle.com/en/java/javase/17/ |
-| Spring Boot    | 3.2.4   | https://spring.io/projects/spring-boot     |
-| Maven          | 3.9.0   | https://maven.apache.org/                  |
-| Docker         | 25.0.3  | https://docs.docker.com/                   |
-| Docker Compose | 3.2.4   | https://docs.docker.com/compose/           |
-| PostgreSQL     | 42.7.3  | https://www.postgresql.org/                |
-| JUnit          | 5.10.2  | https://junit.org/junit5/                  |
+| Tecnologia        | Versão  | Documentação                                                      |
+|-------------------|---------|-------------------------------------------------------------------|
+| Java              | 17.0.10 | https://docs.oracle.com/en/java/javase/17/                        |
+| Spring Boot       | 3.2.4   | https://spring.io/projects/spring-boot                            |
+| Maven             | 3.9.0   | https://maven.apache.org/                                         |
+| Docker            | 25.0.3  | https://docs.docker.com/                                          |
+| Docker Compose    | 3.2.4   | https://docs.docker.com/compose/                                  |
+| PostgreSQL        | 42.7.3  | https://www.postgresql.org/                                       |
+| JUnit             | 5.10.2  | https://junit.org/junit5/                                         |
+| springdoc-openapi | v2.5.0  | https://springdoc.org/#google_vignette                            |
+| Spring Data JDBC  | 3.2.4   | https://docs.spring.io/spring-data/relational/reference/jdbc.html |
 
 ## **Executar o Projeto**
 

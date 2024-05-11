@@ -2,6 +2,7 @@ package br.com.devspraticar.gestao.usuario.controller;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
 import br.com.devspraticar.gestao.usuario.presentation.controller.UserController;
+import br.com.devspraticar.gestao.usuario.presentation.dto.PreRegistrationDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserResponseDTO;
 import br.com.devspraticar.gestao.usuario.domain.service.UserService;
@@ -38,18 +39,17 @@ class UserControllerTest {
     void shouldCreatePreRegistry_Success() {
         // Arrange
         var requestDTO = new UserRequestDTO();
-        var user = MockUtils.getUserMock();
+        var user = MockUtils.getPreRegistrationMock();
         var expectedResponseDTO = new UserResponseDTO();
         expectedResponseDTO.setId(user.getId());
         doNothing().when(inputValidation).validateUserRequest(requestDTO);
         when(userService.createPreRegistry(ArgumentMatchers.any())).thenReturn(user);
         //Act
-        ResponseEntity<UserResponseDTO> response = userController.createPreRegistry(requestDTO);
+        ResponseEntity<PreRegistrationDTO> response = userController.createPreRegistry(requestDTO);
         //Assert
         verify(inputValidation).validateUserRequest(requestDTO);
         verify(userService).createPreRegistry(ArgumentMatchers.any());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(URI.create("/v1/users/" + user.getId()), response.getHeaders().getLocation());
     }
 
 }
