@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS pre_registration (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER NOT NULL,
 	activation_key UUID NOT NULL,
-	expiration_date TIMESTAMP NOT NULL,
+	expiration_date DATE NOT NULL,
 	active BOOLEAN NOT NULL DEFAULT FALSE
 );
 

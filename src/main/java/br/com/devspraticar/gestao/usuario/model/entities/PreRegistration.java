@@ -8,7 +8,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -24,6 +24,6 @@ public class PreRegistration {
     private Long userId;
     private boolean active;
     private UUID activationKey;
-    private LocalDateTime expirationDate;
+    private LocalDate expirationDate;
 
 }

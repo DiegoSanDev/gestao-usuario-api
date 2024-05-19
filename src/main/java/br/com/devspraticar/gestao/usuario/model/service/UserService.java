@@ -1,7 +1,5 @@
 package br.com.devspraticar.gestao.usuario.model.service;
 
-import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
-import br.com.devspraticar.gestao.usuario.model.entities.User;
 import br.com.devspraticar.gestao.usuario.exception.AccountActivationExpiredException;
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
 import br.com.devspraticar.gestao.usuario.exception.KeyAlreadyActivatedException;
@@ -9,11 +7,14 @@ import br.com.devspraticar.gestao.usuario.exception.NotFoundException;
 import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
 import br.com.devspraticar.gestao.usuario.infrastructure.repository.PreRegistrationRepository;
 import br.com.devspraticar.gestao.usuario.infrastructure.repository.UserRepository;
+import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
+import br.com.devspraticar.gestao.usuario.model.entities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -55,7 +56,7 @@ public class UserService {
     private PreRegistration validationActivateAccount(UUID activationKey) {
         PreRegistration preRegistration = preRegistrationRepository.findByActivationKey(activationKey)
             .orElseThrow(() -> new NotFoundException(ACTIVATION_KEY_NOT_FOUND.getDetail(), ACTIVATION_KEY_NOT_FOUND.getDescription()));
-        if (LocalDateTime.now().isAfter(preRegistration.getExpirationDate())) {
+        if (LocalDate.now().isAfter(preRegistration.getExpirationDate())) {
             throw new AccountActivationExpiredException();
         }
         if (!preRegistration.isActive()) {
@@ -82,7 +83,7 @@ public class UserService {
             .userId(user.getId())
             .active(Boolean.TRUE)
             .activationKey(UUID.randomUUID())
-            .expirationDate(LocalDateTime.now()
+            .expirationDate(LocalDate.now()
                 .plusDays(EXPIRATIONDATE_PERIOD_AT_DAY))
             .build();
         return preRegistrationRepository.save(preRegistration);
