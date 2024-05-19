@@ -53,7 +53,7 @@ public interface UserAPI {
                     schema = @Schema(implementation = UserResponseDTO.class))
             }
         ),
-        @ApiResponse(responseCode = "400", description = "Bad Request",
+        @ApiResponse(responseCode = "422", description = "Unprocessable Entity",
             content = { @Content(mediaType = APPLICATION_JSON_VALUE,
                 schema = @Schema(example = """
                     {
