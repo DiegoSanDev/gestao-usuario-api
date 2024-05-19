@@ -31,7 +31,7 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 A <b>arquiteture lógica</b> é a organização em larga escala das classes de software em pacotes, subsitemas e camadas.
 </p>
 
-[![alt text] (https://github.com/DiegoSanDev/gestao-usuario-api/assets/48092812/8e3895f4-38bc-4476-b8b5-578f4c258e2f)
+![arq_logica](https://github.com/DiegoSanDev/gestao-usuario-api/assets/48092812/8e3895f4-38bc-4476-b8b5-578f4c258e2f)
 
 ### **Camada de Apresentação (presentation)**
 <p>
