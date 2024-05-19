@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -18,6 +18,6 @@ public class PreRegistrationDTO {
 
     private boolean active;
     private UUID activationKey;
-    private LocalDateTime expirationDate;
+    private LocalDate expirationDate;
 
 }

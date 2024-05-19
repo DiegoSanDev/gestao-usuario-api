@@ -37,7 +37,7 @@ public class MockUtils {
             .userId(random.nextLong())
             .active(random.nextBoolean())
             .activationKey(UUID.randomUUID())
-            .expirationDate(LocalDateTime.now())
+            .expirationDate(LocalDate.now())
             .build();
     }
 
