@@ -1,13 +1,13 @@
 package br.com.devspraticar.gestao.usuario.service;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
+import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
+import br.com.devspraticar.gestao.usuario.model.entities.User;
+import br.com.devspraticar.gestao.usuario.model.service.UserService;
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
 import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
-import br.com.devspraticar.gestao.usuario.model.PreRegistration;
-import br.com.devspraticar.gestao.usuario.model.User;
-import br.com.devspraticar.gestao.usuario.repository.PreRegistrationRepository;
-import br.com.devspraticar.gestao.usuario.repository.UserRepository;
-import br.com.devspraticar.gestao.usuario.service.notification.EmailService;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.PreRegistrationRepository;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,14 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-
-    @Mock
-    private EmailService emailService;
 
     @Mock
     private UserRepository userRepository;
@@ -61,14 +57,14 @@ class UserServiceTest {
     void shouldSave_userPreRegistry() {
         //Arrange
         var user = MockUtils.getUserMock();
+        var preRegistration = MockUtils.getPreRegistrationMock();
         when(userRepository.save(any(User.class))).thenReturn(user);
-        doNothing().when(emailService).sendEmailUser(any(User.class));
         when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(preRegistrationRepository.save(any(PreRegistration.class))).thenReturn(PreRegistration.builder().build());
+        when(preRegistrationRepository.save(any(PreRegistration.class))).thenReturn(preRegistration);
         //Act
-        var userSave = userService.createPreRegistry(user);
+        var preRegistrationSave = userService.createPreRegistry(user);
         //Assert
-        assertEquals(user.getId(), userSave.getId());
+        assertEquals(preRegistration.getId(), preRegistrationSave.getId());
     }
 
 }

@@ -1,7 +1,8 @@
 package br.com.devspraticar.gestao.usuario.mapper;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.model.mapper.UserMapper;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

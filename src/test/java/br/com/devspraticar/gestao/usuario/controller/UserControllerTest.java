@@ -1,11 +1,12 @@
 package br.com.devspraticar.gestao.usuario.controller;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
-import br.com.devspraticar.gestao.usuario.rest.controller.UserController;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserRequestDTO;
-import br.com.devspraticar.gestao.usuario.rest.dto.UserResponseDTO;
-import br.com.devspraticar.gestao.usuario.service.UserService;
-import br.com.devspraticar.gestao.usuario.validation.InputValidation;
+import br.com.devspraticar.gestao.usuario.presentation.controller.UserController;
+import br.com.devspraticar.gestao.usuario.presentation.dto.PreRegistrationDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
+import br.com.devspraticar.gestao.usuario.presentation.dto.UserResponseDTO;
+import br.com.devspraticar.gestao.usuario.model.service.UserService;
+import br.com.devspraticar.gestao.usuario.presentation.validation.InputValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -14,8 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.net.URI;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
@@ -38,18 +37,17 @@ class UserControllerTest {
     void shouldCreatePreRegistry_Success() {
         // Arrange
         var requestDTO = new UserRequestDTO();
-        var user = MockUtils.getUserMock();
+        var user = MockUtils.getPreRegistrationMock();
         var expectedResponseDTO = new UserResponseDTO();
         expectedResponseDTO.setId(user.getId());
         doNothing().when(inputValidation).validateUserRequest(requestDTO);
         when(userService.createPreRegistry(ArgumentMatchers.any())).thenReturn(user);
         //Act
-        ResponseEntity<UserResponseDTO> response = userController.createPreRegistry(requestDTO);
+        ResponseEntity<PreRegistrationDTO> response = userController.createPreRegistry(requestDTO);
         //Assert
         verify(inputValidation).validateUserRequest(requestDTO);
         verify(userService).createPreRegistry(ArgumentMatchers.any());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(URI.create("/v1/users/" + user.getId()), response.getHeaders().getLocation());
     }
 
 }
