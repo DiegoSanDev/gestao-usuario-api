@@ -24,7 +24,7 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 - <b>docker-compose up --build</b> ou <b>docker-compose up</b>
 - <b>mvn spring-boot:run</b>
 
-## Diagramae de Arquitetura
+## Diagramas de Arquitetura
 
 ### **Arquitetura lógica**
 <p>
