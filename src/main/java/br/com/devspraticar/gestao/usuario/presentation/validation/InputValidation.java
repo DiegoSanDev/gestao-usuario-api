@@ -4,7 +4,7 @@ import br.com.devspraticar.gestao.usuario.presentation.dto.ErrorDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.ErrorFieldDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.presentation.exception.InputValidationException;
-import br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType;
+import br.com.devspraticar.gestao.usuario.model.enums.ErrorMessageType;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;

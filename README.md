@@ -24,100 +24,49 @@ Esta API possibilita a criação, busca e atualização de informações dos usu
 - <b>docker-compose up --build</b> ou <b>docker-compose up</b>
 - <b>mvn spring-boot:run</b>
 
-## Diagrama de Arquitetura
+## Diagramae de Arquitetura
 
-```plaintext
-+--------------------------------------------------------+
-|                   Aplicação Spring Boot                |
-|                                                        |
-|   +-----------------------------------------------+    |
-|   |               Camada de Apresentação          |    |
-|   |                                               |    |
-|   |   +---------------------------------------+   |    |
-|   |   |           Controladores RESTful       |   |    |
-|   |   |                                       |   |    |
-|   |   |   +--------------------------+        |   |    |
-|   |   |   |           DTO            |        |   |    |
-|   |   |   +--------------------------+        |   |    |
-|   |   |                                       |   |    |
-|   |   |   +--------------------------+        |   |    |
-|   |   |   |         Exceções         |        |   |    |
-|   |   |   +--------------------------+        |   |    |
-|   |   |                                       |   |    |
-|   |   |   +--------------------------+        |   |    |
-|   |   |   |       Validações         |        |   |    |
-|   |   |   +--------------------------+        |   |    |
-|   |   +---------------------------------------+   |    |
-|   +-----------------------------------------------+    |
-|                                                        |
-|   +-----------------------------------------------+    |
-|   |              Camada de Domínio                |    |
-|   |                                               |    |
-|   |   +--------------------------+                |    |
-|   |   |          Enums           |                |    |
-|   |   +--------------------------+                |    |
-|   |                                               |    |
-|   |   +--------------------------+                |    |
-|   |   |          Model           |                |    |
-|   |   +--------------------------+                |    |
-|   |                                               |    |
-|   |   +--------------------------+                |    |
-|   |   |        Serviço           |                |    |
-|   |   +--------------------------+                |    |
-|   +-----------------------------------------------+    |
-|                                                        |
-|   +-----------------------------------------------+    |
-|   |           Camada de Infraestrutura            |    |
-|   |                                               |    |
-|   |   +--------------------------+                |    |
-|   |   |         Mapeadores       |                |    |
-|   |   +--------------------------+                |    |
-|   |                                               |    |
-|   |   +--------------------------+                |    |
-|   |   |       Repositórios       |                |    |
-|   |   +--------------------------+                |    |
-|   |                                               |    |
-|   +-----------------------------------------------+    |
-|                                                        |
-+--------------------------------------------------------+
-```
+### **Arquitetura lógica**
+<p>
+A <b>arquiteture lógica</b> é a organização em larga escala das classes de software em pacotes, subsitemas e camadas.
+</p>
 
-### **Camada de Apresentação**
+![alt text] (../../gestao-usuario-api/arq_logica.png)
+
+### **Camada de Apresentação (presentation)**
 <p>
 Esta camada lida com a interação do usuário com a aplicação. Ela contém os controladores RESTful, que recebem as solicitações HTTP e enviam as respostas de volta ao cliente. 
 Também inclui classes DTO para transferir dados entre a camada de apresentação e outras camadas, exceções específicas do controlador para lidar com erros e validações para validar os dados de entrada.
 </p>
 
-### **Camada de Domínio**
+### **Camada de Modelo (model)**
 <p>
 Esta camada contém os modelos de dados e a lógica de negócios da aplicação. Os enums representam constantes ou estados específicos do domínio. 
-A classe de serviço contém a lógica de negócios principal da aplicação.
+A classe de serviço contém a lógica de negócios principal da aplicação. Ela inclui os mapeadores para converter entre objetos DTO e entidades de domínio
 </p>
 
-### **Camada de Infraestrutura**
+### **Camada de Infraestrutura (infrastructure)**
 <p>
-Esta camada lida com o acesso a dados e a integração com sistemas externos. Ela inclui os mapeadores para converter entre objetos DTO e entidades de domínio,
-bem como os repositórios para interagir com o banco de dados.
+Esta camada lida com o acesso a dados e a integração com sistemas externos, bem como os repositórios para interagir com o banco de dados.
 </p>
 
 ## Estrutura de Pastas do Projeto
-- **config/**: Contém classes de configuação da aplicação
-- **domain/**: Contém entidades e lógica de domínio da aplicação.
-  - `enums/`: Enums relacionados ao domínio da aplicação.
-  - `model`: Entidades (modelos de dados) da aplicação.
-  - `service`: Classes de serviço relacionadas à lógica de negócios.
-- **exception/**: Contém classes de exceção personalizadas para tratamento de erros.
-- **infrastructure/**: Contém classes de infraestrutura relacionadas ao acesso a dados.
-  - `mapper/`: Classes de mapeamento para conversão entre objetos DTO e entidades de domínio.
-  - `repository/`: Interfaces de repositório para operações de banco de dados.
-- **presentation/**: Contém classes relacionadas à apresentação da aplicação.
-  - `controller/`: Controladores RESTful da aplicação.
-  - `dto/`: Classes de transferência de dados (DTOs).
-  - `exception/`: Classes de exceção específicas do controlador.
-  - `validation/`: Classes para validação de dados de entrada nos controladores.
-- **resources/**: Contém recursos estáticos e arquivos de configuração.
-  - `application.properties`: Configurações da aplicação Spring Boot.
-  - `schema.sql`: Arquivo SQL para criação de tabelas no banco de dados.
+- **config/**: Contém classes de configuração do Spring Boot. Essas classes são usadas para configurar beans, segurança, e outras funcionalidades específicas da aplicação
+- **model/**: Agrupa as classes que representam a lógica de negócios e o modelo de domínio da aplicação.
+  - `enums/`: Contém enums usados na aplicação para representar conjuntos fixos de constantes.
+  - `entities`: Contém as classes que representam as entidades do modelo de domínio, geralmente mapeadas para tabelas no banco de dados.
+  - `service`: Contém as classes de serviço que implementam a lógica de negócios e interagem com os repositórios.
+  - `mapper`: Contém classes de mapeamento para converter entre entidades e DTOs (Data Transfer Objects).
+- **exception/**: Contém classes para gerenciamento de exceções personalizadas da aplicação. 
+- **presentation/**:  Agrupa as classes responsáveis pela camada de apresentação da aplicação.
+  - `controller/`: Contém os controladores RESTful que lidam com as requisições HTTP.
+  - `dto/`: Contém os Data Transfer Objects (DTOs) usados para transferência de dados entre cliente e servidor.
+  - `exception/`: Contém classes para tratamento de exceções na camada de apresentação.
+  - `validation/`: Contém classes e anotações personalizadas para validação de dados.
+- **Infrastructure/**: Contém classes que implementam a camada de infraestrutura, incluindo repositórios para acesso ao banco de dados.
+  - `repository/`: Contém interfaces que estendem JpaRepository ou CrudRepository para acessar o banco de dados. 
+- **resources/**: Contém recursos estáticos e arquivos de configuração da aplicação.
+  - `application.properties`: Arquivo de configuração principal do Spring Boot.
 
 ## **Alguns comandos do Docker Compose**
 <ol>

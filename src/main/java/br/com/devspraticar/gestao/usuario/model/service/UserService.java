@@ -1,14 +1,14 @@
-package br.com.devspraticar.gestao.usuario.domain.service;
+package br.com.devspraticar.gestao.usuario.model.service;
 
-import br.com.devspraticar.gestao.usuario.domain.model.PreRegistration;
-import br.com.devspraticar.gestao.usuario.domain.model.User;
+import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
+import br.com.devspraticar.gestao.usuario.model.entities.User;
 import br.com.devspraticar.gestao.usuario.exception.AccountActivationExpiredException;
 import br.com.devspraticar.gestao.usuario.exception.DuplicateEmailException;
 import br.com.devspraticar.gestao.usuario.exception.KeyAlreadyActivatedException;
 import br.com.devspraticar.gestao.usuario.exception.NotFoundException;
 import br.com.devspraticar.gestao.usuario.exception.PreRegistryErrorException;
-import br.com.devspraticar.gestao.usuario.repository.PreRegistrationRepository;
-import br.com.devspraticar.gestao.usuario.repository.UserRepository;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.PreRegistrationRepository;
+import br.com.devspraticar.gestao.usuario.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType.ACTIVATION_KEY_NOT_FOUND;
-import static br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType.USER_NOT_FOUND;
+import static br.com.devspraticar.gestao.usuario.model.enums.ErrorMessageType.ACTIVATION_KEY_NOT_FOUND;
+import static br.com.devspraticar.gestao.usuario.model.enums.ErrorMessageType.USER_NOT_FOUND;
 
 @Slf4j
 @Service

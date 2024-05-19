@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestao.usuario.exception;
 
-import br.com.devspraticar.gestao.usuario.domain.model.Error;
+import br.com.devspraticar.gestao.usuario.model.entities.Error;
 
-import static br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType.KEY_ALREADY_ACTIVATED;
+import static br.com.devspraticar.gestao.usuario.model.enums.ErrorMessageType.KEY_ALREADY_ACTIVATED;
 
 public class KeyAlreadyActivatedException extends BaseErrorException {
 

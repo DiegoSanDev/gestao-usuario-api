@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestao.usuario.presentation.controller;
 
-import br.com.devspraticar.gestao.usuario.domain.service.UserService;
-import br.com.devspraticar.gestao.usuario.mapper.PreRegistrationMapper;
-import br.com.devspraticar.gestao.usuario.mapper.UserMapper;
+import br.com.devspraticar.gestao.usuario.model.service.UserService;
+import br.com.devspraticar.gestao.usuario.model.mapper.PreRegistrationMapper;
+import br.com.devspraticar.gestao.usuario.model.mapper.UserMapper;
 import br.com.devspraticar.gestao.usuario.presentation.dto.PreRegistrationDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserResponseDTO;

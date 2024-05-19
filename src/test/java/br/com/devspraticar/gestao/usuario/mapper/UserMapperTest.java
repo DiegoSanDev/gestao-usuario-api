@@ -1,6 +1,7 @@
 package br.com.devspraticar.gestao.usuario.mapper;
 
 import br.com.devspraticar.gestao.usuario.MockUtils;
+import br.com.devspraticar.gestao.usuario.model.mapper.UserMapper;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
 import org.junit.jupiter.api.Test;
 

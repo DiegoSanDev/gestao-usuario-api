@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestao.usuario;
 
-import br.com.devspraticar.gestao.usuario.domain.model.PreRegistration;
-import br.com.devspraticar.gestao.usuario.domain.model.User;
+import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
+import br.com.devspraticar.gestao.usuario.model.entities.User;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.RandomStringUtils;
 

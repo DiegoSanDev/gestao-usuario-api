@@ -1,6 +1,6 @@
 package br.com.devspraticar.gestao.usuario.exception;
 
-import br.com.devspraticar.gestao.usuario.domain.model.Error;
+import br.com.devspraticar.gestao.usuario.model.entities.Error;
 import lombok.Getter;
 
 import java.io.Serializable;

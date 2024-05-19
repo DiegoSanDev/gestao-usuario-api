@@ -1,6 +1,6 @@
-package br.com.devspraticar.gestao.usuario.mapper;
+package br.com.devspraticar.gestao.usuario.model.mapper;
 
-import br.com.devspraticar.gestao.usuario.domain.model.PreRegistration;
+import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
 import br.com.devspraticar.gestao.usuario.presentation.dto.PreRegistrationDTO;
 import lombok.experimental.UtilityClass;
 

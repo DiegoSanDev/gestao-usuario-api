@@ -5,7 +5,7 @@ import br.com.devspraticar.gestao.usuario.presentation.controller.UserController
 import br.com.devspraticar.gestao.usuario.presentation.dto.PreRegistrationDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserRequestDTO;
 import br.com.devspraticar.gestao.usuario.presentation.dto.UserResponseDTO;
-import br.com.devspraticar.gestao.usuario.domain.service.UserService;
+import br.com.devspraticar.gestao.usuario.model.service.UserService;
 import br.com.devspraticar.gestao.usuario.presentation.validation.InputValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,8 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.net.URI;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;

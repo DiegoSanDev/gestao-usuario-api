@@ -1,6 +1,6 @@
-package br.com.devspraticar.gestao.usuario.repository;
+package br.com.devspraticar.gestao.usuario.infrastructure.repository;
 
-import br.com.devspraticar.gestao.usuario.domain.model.PreRegistration;
+import br.com.devspraticar.gestao.usuario.model.entities.PreRegistration;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

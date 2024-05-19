@@ -1,4 +1,4 @@
-package br.com.devspraticar.gestao.usuario.domain.model;
+package br.com.devspraticar.gestao.usuario.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

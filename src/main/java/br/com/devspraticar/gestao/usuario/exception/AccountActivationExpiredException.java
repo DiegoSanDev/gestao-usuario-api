@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestao.usuario.exception;
 
-import br.com.devspraticar.gestao.usuario.domain.model.Error;
+import br.com.devspraticar.gestao.usuario.model.entities.Error;
 
-import static br.com.devspraticar.gestao.usuario.domain.enums.ErrorMessageType.ACTIVATION_KEY_EXPIRED;
+import static br.com.devspraticar.gestao.usuario.model.enums.ErrorMessageType.ACTIVATION_KEY_EXPIRED;
 
 public class AccountActivationExpiredException extends BaseErrorException {
 
