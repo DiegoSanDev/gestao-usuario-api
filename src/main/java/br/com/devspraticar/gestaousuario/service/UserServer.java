@@ -1,22 +1,32 @@
 package br.com.devspraticar.gestaousuario.service;
 
+import br.com.devspraticar.gestaousuario.entity.Role;
 import br.com.devspraticar.gestaousuario.entity.User;
+import br.com.devspraticar.gestaousuario.enums.RoleType;
 import br.com.devspraticar.gestaousuario.exception.EmailAlreadyExistsException;
+import br.com.devspraticar.gestaousuario.exception.RoleNotFoundException;
 import br.com.devspraticar.gestaousuario.exception.UserNotFoundException;
+import br.com.devspraticar.gestaousuario.repository.RoleRepository;
 import br.com.devspraticar.gestaousuario.repository.UserRepository;
 import br.com.devspraticar.gestaousuario.validator.FieldValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class UserServer {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     public User create(User user) {
         userRepository.findByEmail(user.getEmail())
             .ifPresent(userPresent -> { throw new EmailAlreadyExistsException(userPresent.getEmail()); });
+        setRole(user);
+        user.setAtivo(true);
         return userRepository.save(user);
     }
 
@@ -34,6 +44,21 @@ public class UserServer {
 
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    private void setRole(User user) {
+        Role role = switch (user.getUserType()) {
+            case USUARIO -> findRoleByName(RoleType.ROLE_USER.name());
+            case MODERADOR -> findRoleByName(RoleType.ROLE_MODERATOR.name());
+            case ADMINISTRADOE -> findRoleByName(RoleType.ROLE_ADMIN.name());
+        };
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
+    }
+
+    private Role findRoleByName(String roleName) {
+        return roleRepository.findByName(roleName).orElseThrow(RoleNotFoundException::new);
     }
 
     private boolean isEmailPresent(String email) {

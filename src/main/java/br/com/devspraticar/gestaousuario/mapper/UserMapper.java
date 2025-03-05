@@ -1,8 +1,10 @@
 package br.com.devspraticar.gestaousuario.mapper;
 
+import br.com.devspraticar.gestaousuario.dto.request.UserPutRequestDto;
 import br.com.devspraticar.gestaousuario.dto.request.UserRequestDto;
 import br.com.devspraticar.gestaousuario.dto.response.UserResponseDto;
 import br.com.devspraticar.gestaousuario.entity.User;
+import br.com.devspraticar.gestaousuario.enums.UserType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,15 @@ import lombok.NoArgsConstructor;
 public class UserMapper {
 
     public static User toEntity(UserRequestDto requestDto) {
+        return User.builder()
+            .name(requestDto.name())
+            .email(requestDto.email())
+            .password(requestDto.password())
+            .userType(UserType.valueOf(requestDto.userType()))
+            .build();
+    }
+
+    public static User toEntity(UserPutRequestDto requestDto) {
         return User.builder()
             .name(requestDto.name())
             .email(requestDto.email())

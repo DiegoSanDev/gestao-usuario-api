@@ -1,5 +1,6 @@
 package br.com.devspraticar.gestaousuario.rest;
 
+import br.com.devspraticar.gestaousuario.dto.request.UserPutRequestDto;
 import br.com.devspraticar.gestaousuario.dto.request.UserRequestDto;
 import br.com.devspraticar.gestaousuario.dto.response.UserResponseDto;
 import br.com.devspraticar.gestaousuario.entity.User;
@@ -34,7 +35,7 @@ public class UserController implements UserApi {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDto> update(@RequestBody UserRequestDto userRequestDto, @PathVariable("id") Long id) {
+    public ResponseEntity<UserResponseDto> update(@RequestBody UserPutRequestDto userRequestDto, @PathVariable("id") Long id) {
         User userUpdate = userServer.update(UserMapper.toEntity(userRequestDto), id);
         UserResponseDto userResponse = UserMapper.toUserResponseDto(userUpdate);
         return ResponseEntity.ok(userResponse);

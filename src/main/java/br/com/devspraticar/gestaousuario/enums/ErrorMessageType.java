@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum ErrorMessageType {
 
     USER_NOT_FOUND("Usuário não encontrado."),
+    ROLE_NOT_FOUND("Permissão não encontrado."),
     USER_CREATION_FAILED("Falha ao criar o usuário. Verifique os dados fornecidos."),
     USER_UPDATE_FAILED("Falha ao atualizar o usuário. Verifique os dados fornecidos."),
     USER_NOT_ACTIVE("O usuário não está ativo."),
