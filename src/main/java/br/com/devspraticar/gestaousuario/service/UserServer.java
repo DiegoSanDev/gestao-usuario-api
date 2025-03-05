@@ -26,7 +26,6 @@ public class UserServer {
         userRepository.findByEmail(user.getEmail())
             .ifPresent(userPresent -> { throw new EmailAlreadyExistsException(userPresent.getEmail()); });
         setRole(user);
-        user.setAtivo(true);
         return userRepository.save(user);
     }
 

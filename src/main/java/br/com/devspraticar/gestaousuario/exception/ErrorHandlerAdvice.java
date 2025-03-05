@@ -19,4 +19,9 @@ public class ErrorHandlerAdvice {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getErrorMessageDto());
     }
 
+    @ExceptionHandler(InputValidatorException.class)
+    public ResponseEntity<ErrorMessageDto> inputValidatorException(InputValidatorException exception) {
+        return ResponseEntity.badRequest().body(exception.getErrorMessageDto());
+    }
+
 }

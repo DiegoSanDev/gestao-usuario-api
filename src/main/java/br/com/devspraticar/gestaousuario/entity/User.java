@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -56,7 +57,7 @@ public class User implements Serializable {
     private String password;
 
     @Column(nullable = false)
-    private Boolean ativo = true;
+    private Boolean ativo;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -75,5 +76,10 @@ public class User implements Serializable {
 
     @Transient
     private UserType userType;
+
+    @PrePersist
+    private void prePersist() {
+        setAtivo(true);
+    }
 
 }

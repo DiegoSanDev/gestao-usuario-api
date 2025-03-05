@@ -17,6 +17,6 @@ public record UserRequestDto(
         String password,
 
         @NotBlank(message = "O campo 'tipoUsuario' é obrigatório.")
-        @Pattern(regexp = "^(USUARIO|MODERADOR|ADMINISTRADOR)$", message = "O campo 'tipoUsuario' deve ser 'USUARIO', 'MODERADOR' ou 'ADMINISTRADOR'.")
+        @Pattern(regexp = "^(USUARIO|MODERADOR|ADMINISTRADOR)$", message = "O campo 'userType' deve ser 'USUARIO', 'MODERADOR' ou 'ADMINISTRADOR'.")
         String userType) {}
 

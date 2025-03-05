@@ -7,6 +7,7 @@ import br.com.devspraticar.gestaousuario.entity.User;
 import br.com.devspraticar.gestaousuario.mapper.UserMapper;
 import br.com.devspraticar.gestaousuario.rest.api.UserApi;
 import br.com.devspraticar.gestaousuario.service.UserServer;
+import br.com.devspraticar.gestaousuario.validator.UserRequestInputValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController implements UserApi {
 
     private final UserServer userServer;
+    private final UserRequestInputValidation inputValidation;
 
     @Override
     @PostMapping
     public ResponseEntity<UserResponseDto> create(@RequestBody UserRequestDto userRequestDto) {
+        inputValidation.validate(userRequestDto);
         User userEntity = userServer.create(UserMapper.toEntity(userRequestDto));
         UserResponseDto userResponse = UserMapper.toUserResponseDto(userEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);

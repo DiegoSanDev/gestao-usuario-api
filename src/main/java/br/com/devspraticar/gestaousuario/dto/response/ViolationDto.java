@@ -7,18 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ErrorMessageDto implements Serializable {
+public class ViolationDto {
 
+    private String field;
     private String message;
-    private List<ViolationDto> violations;
 
 }
