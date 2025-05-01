@@ -67,8 +67,19 @@ Este endpoint permite a criação de um novo usuário na aplicação.
     }
   ]
 }
- 
 ```
+**curl de exemplo**
+```
+curl --location 'http://localhost:8080/v1/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "Fulano de Tals",
+  "email": "fulano.tals2@example.com",
+  "password": "123456",
+  "userType": "USUARIO"
+}'
+```
+
 ### 2. **Atualizar Usuário**
 
 #### **PUT /v1/users/{id}**
@@ -108,4 +119,14 @@ Atualiza um usuário existente com o id fornecido.
     }
   ]
 }
-
+```
+**curl de exemplo**
+```
+curl --location --request PUT 'http://localhost:8080/v1/users/1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Fulano de Talssss",
+    "email": "fulano.tals1@example.com",
+    "password": "123456"
+}'
+```

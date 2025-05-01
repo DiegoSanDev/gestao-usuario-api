@@ -28,9 +28,9 @@ public class UserServer {
 
     @Transactional(rollbackFor = Exception.class)
     public User create(User user) {
+        userRepository.findByEmail(user.getEmail())
+            .ifPresent(userPresent -> { throw new EmailAlreadyExistsException(userPresent.getEmail()); });
         try {
-            userRepository.findByEmail(user.getEmail())
-                .ifPresent(userPresent -> { throw new EmailAlreadyExistsException(userPresent.getEmail()); });
             setRole(user);
             return userRepository.save(user);
         } catch (Exception e) {
@@ -40,11 +40,11 @@ public class UserServer {
     }
 
     public User update(User user, Long id) {
+        User userToUpdate = this.findById(id);
+        if (isEmailPresent(user.getEmail()) && !userToUpdate.getEmail().equals(user.getEmail())) {
+            throw new EmailAlreadyExistsException(user.getEmail());
+        }
         try {
-            User userToUpdate = this.findById(id);
-            if (isEmailPresent(user.getEmail()) && !userToUpdate.getEmail().equals(user.getEmail())) {
-                throw new EmailAlreadyExistsException(user.getEmail());
-            }
             userToUpdate.setEmail(user.getEmail());
             FieldValidator.validateAndUpdate(user.getName(), userToUpdate::setName);
             FieldValidator.validateAndUpdate(user.getPassword(), userToUpdate::setPassword);
