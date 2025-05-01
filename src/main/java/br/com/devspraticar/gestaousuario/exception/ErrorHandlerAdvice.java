@@ -27,4 +27,10 @@ public class ErrorHandlerAdvice {
         return ResponseEntity.badRequest().body(exception.getErrorMessageDto());
     }
 
+    @ExceptionHandler(InternalServerErrorException.class)
+    public ResponseEntity<ErrorMessageDto> genericsError(InternalServerErrorException exception) {
+        log.error("{}", exception.getErrorMessageDto());
+        return ResponseEntity.internalServerError().body(exception.getErrorMessageDto());
+    }
+
 }
