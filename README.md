@@ -4,17 +4,17 @@ Este é um projeto de demonstração utilizando Spring Boot para a criação de 
 
 ## Tecnologias Utilizadas
 
-| **Tecnologia**                     | **Descrição**                                                                 | **Versão** | **Link**                                                                                                                           |
-|------------------------------------|-------------------------------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------------------|
-| **Java**                           | Linguagem principal utilizada no projeto.                                     | 21         | [OpenJDK](https://openjdk.org/projects/jdk/21/)                                                                                    |
-| **Spring Boot**                    | Framework para aplicações Java modernas com configurações mínimas.            | 3.3.5      | [Spring Boot](https://spring.io/projects/spring-boot)                                                                              |
-| **Spring Boot Starter Web**        | Facilita a criação de APIs RESTful com Spring MVC.                            | 3.3.5      | [spring-boot-starter-web](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web)                               |
-| **Spring Boot Starter Validation** | Validação de dados com Bean Validation (JSR-380).                             | 3.3.5      | [spring-boot-starter-validation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#io.validation)              |
-| **Spring Boot Starter Data JPA**   | Integração com JPA e abstração de acesso a dados com Spring Data.             | 3.3.5      | [spring-boot-starter-data-jpa](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#data.sql.jpa-and-spring-data) |
-| **H2 Database**                    | Banco de dados em memória para desenvolvimento e testes.                      | 2.x        | [H2 Database](https://www.h2database.com/)                                                                                         |
-| **Lombok**                         | Redução de código boilerplate (getters, setters, etc).                        | 1.18.34    | [Lombok](https://projectlombok.org/)                                                                                               |
-| **Apache Commons Lang**            | Utilitários complementares à API padrão do Java.                              | 3.17.0     | [Apache Commons Lang](https://commons.apache.org/proper/commons-lang/)                                                             |
-| **Spring Boot Starter Test**       | Ferramentas para testes unitários e de integração (JUnit, Mockito, etc).      | 3.3.5      | [spring-boot-starter-test](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.testing)                 |
+| **Tecnologia**                     | **Descrição**                                                            | **Versão** | **Link**                                                                                                                           |
+|------------------------------------|--------------------------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **Java**                           | Linguagem principal utilizada no projeto.                                | 21         | [OpenJDK](https://openjdk.org/projects/jdk/21/)                                                                                    |
+| **Spring Boot**                    | Framework para aplicações Java modernas com configurações mínimas.       | 3.3.5      | [Spring Boot](https://spring.io/projects/spring-boot)                                                                              |
+| **Spring Boot Starter Web**        | Facilita a criação de APIs RESTful com Spring MVC.                       | 3.3.5      | [spring-boot-starter-web](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web)                               |
+| **Spring Boot Starter Validation** | Validação de dados com Bean Validation.                                  | 3.3.5      | [spring-boot-starter-validation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#io.validation)              |
+| **Spring Boot Starter Data JPA**   | Integração com JPA e abstração de acesso a dados com Spring Data.        | 3.3.5      | [spring-boot-starter-data-jpa](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#data.sql.jpa-and-spring-data) |
+| **H2 Database**                    | Banco de dados em memória para desenvolvimento e testes.                 | 2.x        | [H2 Database](https://www.h2database.com/)                                                                                         |
+| **Lombok**                         | Redução de código boilerplate (getters, setters, etc).                   | 1.18.34    | [Lombok](https://projectlombok.org/)                                                                                               |
+| **Apache Commons Lang**            | Utilitários complementares à API padrão do Java.                         | 3.17.0     | [Apache Commons Lang](https://commons.apache.org/proper/commons-lang/)                                                             |
+| **Spring Boot Starter Test**       | Ferramentas para testes unitários e de integração (JUnit, Mockito, etc). | 3.3.5      | [spring-boot-starter-test](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.testing)                 |
 
 
 ## Funcionalidades
@@ -129,4 +129,30 @@ curl --location --request PUT 'http://localhost:8080/v1/users/1' \
     "email": "fulano.tals1@example.com",
     "password": "123456"
 }'
+```
+
+### 3. **Buscar Usuário po id**
+
+#### **Get /v1/users/{id}**
+
+**Response (Sucesso - 200):**
+```json
+{
+  "id": 1,
+  "name": "João Silva da Costa",
+  "email": "joao.silva@example.com",
+  "password": "SenhaForte123!"
+}
+```
+
+**Erro - 404 Not found**
+```json
+{
+  "message": "Usuário não encontrado."
+}
+```
+
+**curl de exemplo**
+```
+curl --location 'http://localhost:8080/v1/users/1'
 ```
