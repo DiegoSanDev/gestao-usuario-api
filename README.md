@@ -29,8 +29,7 @@ Cria um novo usuário com base nos dados fornecidos.
 {
   "id": 1,
   "name": "João Silva da Costa",
-  "email": "joao.silva@example.com",
-  "password": "SenhaForte123!"
+  "email": "joao.silva@example.com"
 }
 ```
 ### 2. **Atualizar Usuário**
@@ -52,8 +51,7 @@ Atualiza um usuário existente com o id fornecido.
 {
   "id": 1,
   "name": "João Silva da Costa",
-  "email": "joao.silva@example.com",
-  "password": "SenhaForte123!"
+  "email": "joao.silva@example.com"
 }
 ```
 
