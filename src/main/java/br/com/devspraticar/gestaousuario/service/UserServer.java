@@ -3,6 +3,7 @@ package br.com.devspraticar.gestaousuario.service;
 import br.com.devspraticar.gestaousuario.entity.Role;
 import br.com.devspraticar.gestaousuario.entity.User;
 import br.com.devspraticar.gestaousuario.enums.RoleType;
+import br.com.devspraticar.gestaousuario.enums.UserType;
 import br.com.devspraticar.gestaousuario.exception.EmailAlreadyExistsException;
 import br.com.devspraticar.gestaousuario.exception.InternalServerErrorException;
 import br.com.devspraticar.gestaousuario.exception.RoleNotFoundException;
