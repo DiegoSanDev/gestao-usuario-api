@@ -16,7 +16,6 @@ public class UserMapper {
             .name(requestDto.name())
             .email(requestDto.email())
             .password(requestDto.password())
-            .userType(UserType.valueOf(requestDto.userType()))
             .build();
     }
 
@@ -33,7 +32,6 @@ public class UserMapper {
             .id(user.getId())
             .name(user.getName())
             .email(user.getEmail())
-            .password(user.getPassword())
             .build();
     }
 

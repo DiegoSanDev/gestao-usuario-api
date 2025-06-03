@@ -61,11 +61,7 @@ public class UserServer {
     }
 
     private void setRole(User user) {
-        Role role = switch (user.getUserType()) {
-            case USUARIO -> findRoleByName(RoleType.ROLE_USER.name());
-            case MODERADOR -> findRoleByName(RoleType.ROLE_MODERATOR.name());
-            case ADMINISTRADOE -> findRoleByName(RoleType.ROLE_ADMIN.name());
-        };
+        Role role =  findRoleByName(RoleType.ROLE_USER.name());
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         user.setRoles(roles);

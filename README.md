@@ -1,8 +1,10 @@
-# API de Gestão de Usuários
+# API RESTful de Gestão de Usuários com Spring Boot
 
-Este é um projeto de demonstração utilizando Spring Boot para a criação de uma API RESTful de gestão de usuários.
+Projeto de demonstração de uma API RESTful para gestão de usuários, construída com Java 21 e Spring Boot 3.3.5. Inclui operações CRUD, validação de dados e testes unitários.
 
 ## Tecnologias Utilizadas
+
+Este projeto utiliza as seguintes tecnologias e bibliotecas:
 
 | **Tecnologia**                     | **Descrição**                                                            | **Versão** | **Link**                                                                                                                           |
 |------------------------------------|--------------------------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -13,146 +15,146 @@ Este é um projeto de demonstração utilizando Spring Boot para a criação de 
 | **Spring Boot Starter Data JPA**   | Integração com JPA e abstração de acesso a dados com Spring Data.        | 3.3.5      | [spring-boot-starter-data-jpa](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#data.sql.jpa-and-spring-data) |
 | **H2 Database**                    | Banco de dados em memória para desenvolvimento e testes.                 | 2.x        | [H2 Database](https://www.h2database.com/)                                                                                         |
 | **Lombok**                         | Redução de código boilerplate (getters, setters, etc).                   | 1.18.34    | [Lombok](https://projectlombok.org/)                                                                                               |
-| **Apache Commons Lang**            | Utilitários complementares à API padrão do Java.                         | 3.17.0     | [Apache Commons Lang](https://commons.apache.org/proper/commons-lang/)                                                             |
 | **Spring Boot Starter Test**       | Ferramentas para testes unitários e de integração (JUnit, Mockito, etc). | 3.3.5      | [spring-boot-starter-test](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.testing)                 |
 
+## Pré-requisitos
+
+- Java 21
+- Maven 3.9+
+- IDE de sua preferência (IntelliJ, Eclipse, VSCode)
+
+## Como executar
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seuusuario/api-gestao-usuarios.git
+   cd api-gestao-usuarios
+2. Compile e execute a aplicação:
+   ```bash
+   mvn spring-boot:run
+3. Acesse a aplicação:
+   ```bash
+   http://localhost:8080
+4. Para acessar a documentação da API via Swagger: 
+   ```bash
+   http://localhost:8080/swagger-ui.html
+   
+## Estrutura do Projeto
+- src/main/java – Código fonte da aplicação
+- src/test/java – Testes unitários e de integração
+- application.yaml – Configurações da aplicação
 
 ## Funcionalidades
-
-- **Criar um Usuário**
-- **Atualizar um Usuário**
-- **Consultar um Usuário por ID**
+- Criar um Usuário
+- Atualizar um Usuário
+- Consultar um Usuário por ID
 
 ## Endpoints
+1. Criar um Novo Usuário
+   - POST /v1/users 
+   - Este endpoint permite a criação de um novo usuário na aplicação.
+   - Requisição:
+      - Headers 
+        - Content-Type: application/json
+      - Request Body:
+        ``` json
+        {
+          "name": "João Silva da Costa",
+          "email": "joao.silva@example.com",
+          "password": "SenhaForte123!"
+        }
+          
+   - Resposta (Status HTTP: 201 Created)
+     ``` json 
+     {
+       "id": 1,
+       "name": "João Silva da Costa",
+       "email": "joao.silva@example.com",
+       "createdAt": "2025-05-01T12:00:00Z"
+     }
+   - Erro - 400 Bad Request
+       ````json
+       {
+          "message": "Campo(s) obrigatório(s)",
+          "violations": [
+            {
+               "field": "password",
+               "message": "O campo 'password' deve ter entre 6 e 8 caracteres."
+            }
+          ]
+       }
+   - Exemplo de requisição com cURL
+       ```
+        curl --location 'http://localhost:8080/v1/users' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "name": "Fulano de Tals",
+        "email": "fulano.tals2@example.com",
+        "password": "123456"
+        }'
+       ```
+2. Atualizar Usuário
+   - PUT /v1/users/{id}
+   - Atualiza um usuário existente com o id fornecido.
+   - Requisição
+       - Headers
+           - Content-Type: application/json
+       - Request Body:
+         ``` json
+         {
+           "name": "João Silva da Costa",
+           "email": "joao.silva@example.com",
+           "password": "SenhaForte123!"
+         }
 
-### 1. **Criar um Novo Usuário**
+   - Resposta (Status HTTP: 200 OK)
+     ``` json 
+     {
+       "id": 1,
+       "name": "João Silva da Costa",
+       "email": "joao.silva@example.com",
+       "createdAt": "2025-05-01T12:00:00Z",
+       "updateAt": "2025-05-01T12:00:00Z",
+     }
+   - Erro - 400 Bad Request
+       ````json
+       {
+          "message": "Campo(s) obrigatório(s)",
+          "violations": [
+            {
+               "field": "password",
+               "message": "O campo 'password' deve ter entre 6 e 8 caracteres."
+            }
+          ]
+       }
+   - Exemplo de requisição com cURL
+       ```
+        curl --location --request PUT 'http://localhost:8080/v1/users/1' \
+         --header 'Content-Type: application/json' \
+           --data-raw '{
+           "name": "Fulano de Talssss",
+           "email": "fulano.tals1@example.com",
+           "password": "123456"
+          }'
+       ```
+3.  Buscar Usuário por ID
+    - GET /v1/users/{id}
+    - Busca um usuário existente com o id fornecido.
+    - Resposta (Status HTTP: 200 OK)
+         ``` json 
+          {
+           "id": 1,
+           "name": "João Silva da Costa",
+           "email": "joao.silva@example.com",
+           "createdAt": "2025-05-01T12:00:00Z",
+           "updateAt": "2025-05-01T12:00:00Z",
+         }
+      
+    - Erro - 404 Not Found
+         ````json
+         {"message": "Usuário não encontrado."}
 
-#### **POST /v1/users**
-
-Este endpoint permite a criação de um novo usuário na aplicação.
-
-#### Requisição
-**Headers**
-- Content-Type: application/json
-
-**Request Body:**
-```json
-{
-  "name": "Fulano de Tals",
-  "email": "fulano.tals@example.com",
-  "password": "Senh@Forte321",
-  "userType": "USUARIO"
-}
-
-```
-**Response (Sucesso - 201):**
-```json
-{
-  "id": 1,
-  "name": "Fulano de Tals",
-  "email": "fulano.tals@example.com",
-  "password": "Senh@Forte321",
-  "userType": "USUARIO",
-  "createdAt": "2025-05-01T12:00:00Z"
-}
-```
-**Erro - 400 Bad Request**
-```json
-{
-  "message": "Campo(s) obrigátório(s)",
-  "violations": [
-    {
-      "field": "password",
-      "message": "O campo 'password' deve ter entre 6 e 8 caracteres."
-    }
-  ]
-}
-```
-**curl de exemplo**
-```
-curl --location 'http://localhost:8080/v1/users' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "name": "Fulano de Tals",
-  "email": "fulano.tals2@example.com",
-  "password": "123456",
-  "userType": "USUARIO"
-}'
-```
-
-### 2. **Atualizar Usuário**
-
-#### **PUT /v1/users/{id}**
-
-Atualiza um usuário existente com o id fornecido.
-
-#### Requisição
-**Headers**
-- Content-Type: application/json
-
-**Request Body:**
-```json
-{
-  "name": "João Silva da Costa",
-  "email": "joao.silva@example.com",
-  "password": "SenhaForte123!"
-}
-```
-**Response (Sucesso - 200):**
-```json
-{
-  "id": 1,
-  "name": "João Silva da Costa",
-  "email": "joao.silva@example.com",
-  "password": "SenhaForte123!"
-}
-```
-
-**Erro - 400 Bad Request**
-```json
-{
-  "message": "Campo(s) obrigátório(s)",
-  "violations": [
-    {
-      "field": "name",
-      "message": "O campo 'name' deve der informado"
-    }
-  ]
-}
-```
-**curl de exemplo**
-```
-curl --location --request PUT 'http://localhost:8080/v1/users/1' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "Fulano de Talssss",
-    "email": "fulano.tals1@example.com",
-    "password": "123456"
-}'
-```
-
-### 3. **Buscar Usuário po id**
-
-#### **Get /v1/users/{id}**
-
-**Response (Sucesso - 200):**
-```json
-{
-  "id": 1,
-  "name": "João Silva da Costa",
-  "email": "joao.silva@example.com",
-  "password": "SenhaForte123!"
-}
-```
-
-**Erro - 404 Not found**
-```json
-{
-  "message": "Usuário não encontrado."
-}
-```
-
-**curl de exemplo**
-```
-curl --location 'http://localhost:8080/v1/users/1'
-```
+    - Exemplo de requisição com cURL
+         ```
+           curl --location 'http://localhost:8080/v1/users/1'
+         ```

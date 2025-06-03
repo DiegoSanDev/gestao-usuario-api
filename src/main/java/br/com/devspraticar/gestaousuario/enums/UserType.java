@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum UserType {
 
-    USUARIO,
-    MODERADOR,
-    ADMINISTRADOE
+    USER,
+    MODERATOR,
+    ADMINISTRATOR
 
 }

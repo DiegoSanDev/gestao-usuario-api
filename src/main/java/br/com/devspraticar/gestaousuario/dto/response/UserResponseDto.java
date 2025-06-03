@@ -5,4 +5,4 @@ import lombok.Builder;
 
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record UserResponseDto(Long id, String name, String email, String password) {}
+public record UserResponseDto(Long id, String name, String email) {}

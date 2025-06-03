@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum RoleType {
 
-    ROLE_USER("Permissão de administrador"),
-    ROLE_ADMIN("Permissão de usuário comum"),
+    ROLE_USER("Permissão de usuário comum"),
+    ROLE_ADMIN("Permissão de administrador"),
     ROLE_MODERATOR("Permissão de moderador");
 
     private final String description;
