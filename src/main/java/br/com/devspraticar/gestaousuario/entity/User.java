@@ -4,6 +4,8 @@ import br.com.devspraticar.gestaousuario.enums.UserType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -22,7 +24,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
@@ -71,15 +72,22 @@ public class User implements Serializable {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
+    @Column(name = "update_at")
     private LocalDateTime updateAt;
 
-    @Transient
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
     private UserType userType;
 
     @PrePersist
     private void prePersist() {
         setAtivo(true);
+        setUserType(UserType.USER);
+    }
+
+    @PreUpdate
+    private void preUpdate() {
+        this.updateAt = LocalDateTime.now();
     }
 
 }
