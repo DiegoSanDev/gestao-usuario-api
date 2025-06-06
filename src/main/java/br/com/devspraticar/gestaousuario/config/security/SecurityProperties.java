@@ -14,9 +14,6 @@ import java.util.List;
 public class SecurityProperties {
 
     private List<String> publicEndpoints;
-
-    public List<String> getPublicEndpoints() {
-        return publicEndpoints;
-    }
+    private boolean disableSecurityHeaders;
 
 }

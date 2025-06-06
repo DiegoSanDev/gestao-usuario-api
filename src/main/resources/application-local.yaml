@@ -1,8 +1,6 @@
 server:
   port: 8080
 spring:
-  profiles:
-    active: local
   application:
     name: gestao-usuario-api
   datasource:
@@ -24,18 +22,21 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
 springdoc:
   api-docs.path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
+
 security:
   public-endpoints:
     - /swagger-ui.html
     - /v3/api-docs/**
     - /swagger-ui/**
     - /auth/**
-  disable-security-headers: false
+    - /h2-console
+    - /h2-console/**
+  disable-security-headers: true
   jwt:
-    secret: ${JWT_SECRET}
-    expirationMS: ${JWT_EXPIRATION_MS:3600000}
-
+    secret: B8ktvSqMgl9YkG3kFAjQP8eEWWwEshBN2Ld8oJ7FsGCvl5gQK1SFmHMLp9tn2VJae8tbCKHBkGc
+    expirationMS: 3600000
