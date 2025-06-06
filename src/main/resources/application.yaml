@@ -26,3 +26,13 @@ springdoc:
   api-docs.path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
+security:
+  public-endpoints:
+    - /swagger-ui.html
+    - /v3/api-docs/**
+    - /swagger-ui/**
+    - /h2-console/**
+  jwt:
+    secret: B8ktvSqMgl9YkG3kFAjQP8eEWWwEshBN2Ld8oJ7FsGCvl5gQK1SFmHMLp9tn2VJae8tbCKHBkGc
+    expirationMS: 3600000
+

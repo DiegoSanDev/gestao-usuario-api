@@ -13,6 +13,7 @@ import br.com.devspraticar.gestaousuario.repository.UserRepository;
 import br.com.devspraticar.gestaousuario.validator.FieldValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,12 +27,14 @@ public class UserServer {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional(rollbackFor = Exception.class)
     public User create(User user) {
         userRepository.findByEmail(user.getEmail())
             .ifPresent(userPresent -> { throw new EmailAlreadyExistsException(userPresent.getEmail()); });
         try {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             setRole(user);
             return userRepository.save(user);
         } catch (Exception e) {
