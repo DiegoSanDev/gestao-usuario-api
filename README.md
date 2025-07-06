@@ -14,7 +14,7 @@ Projeto de demonstração de uma API RESTful para gestão de usuários, constru�
     - [Atualizar Usuário](#2-atualizar-usuário)
     - [Buscar Usuário por ID](#3-buscar-usuário-por-id)
     - [Login (Autenticação)](#endpoint-de-login)
-- [Autenticação e Geração de Token JWT](#-autenticação-e-geraçãø-de-token-jwt)
+- [Autenticação e Geração de Token JWT](#autenticação-e-geraçãø-de-token-jwt)
     - [Fluxo de Login](#como-funciona-o-fluxo-de-login)
     - [Endpoint de Login](#endpoint-de-login)
     - [Como usar o token JWT](#como-usar-o-token-jwt)
