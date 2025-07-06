@@ -33,6 +33,7 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 | **H2 Database**                    | Banco de dados em memória para desenvolvimento e testes.                 | 2.x        | [H2 Database](https://www.h2database.com/)                                                                                         |
 | **Lombok**                         | Redução de código boilerplate (getters, setters, etc).                   | 1.18.34    | [Lombok](https://projectlombok.org/)                                                                                               |
 | **Spring Boot Starter Test**       | Ferramentas para testes unitários e de integração (JUnit, Mockito, etc). | 3.3.5      | [spring-boot-starter-test](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.testing)                 |
+| **Spring Security**                | Segurança da aplicação.                                                  | 6.x        | [spring-security](https://spring.io/projects/spring-security)                                                                      |
 
 ## Pré-requisitos
 
