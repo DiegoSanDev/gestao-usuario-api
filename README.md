@@ -2,6 +2,23 @@
 
 Projeto de demonstração de uma API RESTful para gestão de usuários, construída com Java 21 e Spring Boot 3.3.5. Inclui operações CRUD, validação de dados e testes unitários.
 
+## Índice
+
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Pré-requisitos](#pré-requisitos)
+- [Como executar](#como-executar)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Endpoints](#endpoints)
+    - [Criar Usuário](#1-criar-usuário)
+    - [Atualizar Usuário](#2-atualizar-usuário)
+    - [Buscar Usuário por ID](#3-buscar-usuário-por-id)
+    - [Login (Autenticação)](#endpoint-de-login)
+- [Autenticação e Geração de Token JWT](#-autenticação-e-geraçãø-de-token-jwt)
+    - [Fluxo de Login](#como-funciona-o-fluxo-de-login)
+    - [Endpoint de Login](#endpoint-de-login)
+    - [Como usar o token JWT](#como-usar-o-token-jwt)
+
 ## Tecnologias Utilizadas
 
 Este projeto utiliza as seguintes tecnologias e bibliotecas:
@@ -158,3 +175,45 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
          ```
            curl --location 'http://localhost:8080/v1/users/1'
          ```
+## Autenticação e Geração de Token JWT
+
+### Como funciona o fluxo de login?
+    1. O usuário envia e-mail e senha via endpoint /auth/login.
+    2. As credenciais são validadas pelo sistema.
+    3. É gerado um token JWT com informações de autenticação.
+    4. O cliente usa o token nas requisições futuras via header Authorization.
+
+### Endpoint de Login
+1. Login 
+   - POST /auth/login 
+   - Request Body:
+     - Headers
+         - Content-Type: application/json
+     - Request Body:
+       ``` json
+       {
+         "email": "usuario@dominio.com",
+         "password": "SenhaForte123!"
+       }
+
+     - Resposta (Status HTTP: 200 OK)
+       ``` json 
+       {
+         "accessToken": "eyJhbGciOiJIUzUxMiJ9...",
+         "tokenType": "Bearer",
+         "expiresIn": 900
+       }
+     - Exemplo de requisição com cURL 
+       ```
+       curl --location 'http://localhost:8080/auth/login' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "email": "usuario@dominio.com",
+        "password": "SenhaForte123!"
+        }'
+       ```
+### Como usar o token JWT
+Após obter o token, envie-o no header:
+
+1. Authorization: Bearer <accessToken>
+
