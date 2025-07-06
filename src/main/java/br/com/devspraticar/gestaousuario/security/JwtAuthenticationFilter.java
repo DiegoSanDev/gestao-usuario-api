@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -24,11 +25,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String token = resolveToken(request);
 
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            Authentication auth = jwtTokenProvider.getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(auth);
+        if(Objects.nonNull(token)) {
+            if (jwtTokenProvider.validateToken(token)) {
+                Authentication auth = jwtTokenProvider.getAuthentication(token);
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            } else {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inválido ou expirado");
+                return;
+            }
         }
-
         filterChain.doFilter(request, response);
     }
 

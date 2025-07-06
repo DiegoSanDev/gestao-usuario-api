@@ -1,6 +1,7 @@
 package br.com.devspraticar.gestaousuario.security.service;
 
 import br.com.devspraticar.gestaousuario.entity.User;
+import br.com.devspraticar.gestaousuario.model.AuthToken;
 import br.com.devspraticar.gestaousuario.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,10 +16,16 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
 
-    public String authenticate(User user) {
+    public AuthToken authenticate(User user) {
         Authentication authentication = authenticationManager
             .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-        return tokenProvider.generateToken(authentication);
+        var token = tokenProvider.generateToken(authentication);
+
+        return AuthToken.builder()
+            .accessToken(token)
+            .tokenType("Bearer")
+            .expiresIn(tokenProvider.getJwtExpirationMs())
+            .build();
     }
 
 }
