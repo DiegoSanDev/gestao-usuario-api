@@ -65,7 +65,7 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 ## Estrutura de Pacotes
 
 | Pacote                    | Responsabilidade                                                                                                      |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| ------------------------- |-----------------------------------------------------------------------------------------------------------------------|
 | `config`                  | Configurações técnicas e de infraestrutura da aplicação.                                                              |
 | `config.security`         | Configuração do Spring Security (SecurityFilterChain, AuthenticationManager, filtros JWT, propriedades de segurança). |
 | `controller`              | Camada de entrada da aplicação. Responsável por expor os endpoints REST e orquestrar as requisições HTTP.             |
@@ -76,13 +76,13 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 | `model`                   | Camada de domínio da aplicação. Contém regras de negócio e o estado central do sistema.                               |
 | `model.entity`            | Entidades do domínio (JPA). Representam o estado persistido da aplicação.                                             |
 | `model.service`           | Serviços de domínio. Implementam regras de negócio e casos de uso centrais.                                           |
-| `model.enums`             | Enumerações do domínio (tipos, estados, roles, etc.).                                                                 |
+| `model.enums`             | Enumerações do domínio.                                                                                               |
 | `repository`              | Camada de persistência. Interfaces JPA para acesso a dados.                                                           |
 | `security`                | Componentes relacionados à segurança da aplicação, isolados do MVC.                                                   |
 | `security.auth`           | Casos de uso de autenticação (login, geração/refresh de token).                                                       |
 | `security.jwt`            | Lógica de geração, validação e manipulação de tokens JWT.                                                             |
 | `security.userdetails`    | Adapters do Spring Security (`UserDetailsService`).                                                                   |
-| `security.model`          | Modelos de segurança (usuário autenticado, roles, authorities).                                                       |
+| `security.model`          | Modelos de segurança                                                                                                  |
 | `mapper`                  | Conversão de dados entre camadas (DTO ↔ Entity).                                                                      |
 | `exception`               | Exceções da aplicação e tratamento global de erros (`@ControllerAdvice`).                                             |
 
