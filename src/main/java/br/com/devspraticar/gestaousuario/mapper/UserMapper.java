@@ -1,10 +1,9 @@
 package br.com.devspraticar.gestaousuario.mapper;
 
-import br.com.devspraticar.gestaousuario.dto.request.UserPutRequestDto;
-import br.com.devspraticar.gestaousuario.dto.request.UserRequestDto;
-import br.com.devspraticar.gestaousuario.dto.response.UserResponseDto;
-import br.com.devspraticar.gestaousuario.entity.User;
-import br.com.devspraticar.gestaousuario.enums.UserType;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDto;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDto;
+import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDto;
+import br.com.devspraticar.gestaousuario.model.entity.User;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

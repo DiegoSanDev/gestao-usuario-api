@@ -1,6 +1,6 @@
 package br.com.devspraticar.gestaousuario.repository;
 
-import br.com.devspraticar.gestaousuario.entity.Role;
+import br.com.devspraticar.gestaousuario.model.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
