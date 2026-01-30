@@ -1,7 +1,6 @@
 package br.com.devspraticar.gestaousuario.config.security;
 
-import br.com.devspraticar.gestaousuario.security.JwtAuthenticationFilter;
-import br.com.devspraticar.gestaousuario.security.JwtTokenProvider;
+import br.com.devspraticar.gestaousuario.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static br.com.devspraticar.gestaousuario.enums.RoleType.ROLE_USER;
+import static br.com.devspraticar.gestaousuario.model.enums.RoleType.ROLE_USER;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpMethod.PUT;
