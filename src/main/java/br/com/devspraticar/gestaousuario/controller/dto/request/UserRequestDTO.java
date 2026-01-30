@@ -1,15 +1,16 @@
 package br.com.devspraticar.gestaousuario.controller.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 @Builder
-public record UserRequestDto(
+public record UserRequestDTO(
         @NotBlank(message = "O campo 'name' é obrigatório.")
         String name,
 
         @NotBlank(message = "O campo 'email' é obrigatório.")
+        @Email(message = "Formato de e-mail inválido")
         String email,
 
         @NotBlank(message = "O campo 'password' é obrigatório.")

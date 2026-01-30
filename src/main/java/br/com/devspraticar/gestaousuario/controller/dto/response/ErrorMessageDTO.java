@@ -18,9 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ErrorMessageDto implements Serializable {
+public class ErrorMessageDTO implements Serializable {
 
     private String message;
-    private List<ViolationDto> violations;
+    private List<ViolationDTO> violations;
 
 }

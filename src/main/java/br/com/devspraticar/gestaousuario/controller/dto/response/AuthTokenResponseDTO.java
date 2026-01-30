@@ -3,7 +3,7 @@ package br.com.devspraticar.gestaousuario.controller.dto.response;
 import lombok.Builder;
 
 @Builder
-public record AuthTokenResponseDto(
+public record AuthTokenResponseDTO(
     String accessToken,
     String tokenType,
     Long expiresIn) { }

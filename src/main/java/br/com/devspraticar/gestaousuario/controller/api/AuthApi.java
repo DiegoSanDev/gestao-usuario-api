@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestaousuario.controller.api;
 
 import br.com.devspraticar.gestaousuario.controller.dto.request.AuthRequestDTO;
-import br.com.devspraticar.gestaousuario.controller.dto.response.AuthTokenResponseDto;
+import br.com.devspraticar.gestaousuario.controller.dto.response.AuthTokenResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,7 +23,7 @@ public interface AuthApi {
                 description = "Autenticação bem-sucedida",
                 content = @Content(
                         mediaType = "application/json",
-                        schema = @Schema(implementation = AuthTokenResponseDto.class)
+                        schema = @Schema(implementation = AuthTokenResponseDTO.class)
                 )
             ),
             @ApiResponse(
@@ -34,6 +34,6 @@ public interface AuthApi {
         }
     )
     @PostMapping("/login")
-    ResponseEntity<AuthTokenResponseDto> authenticate(@RequestBody AuthRequestDTO loginRequest);
+    ResponseEntity<AuthTokenResponseDTO> authenticate(@RequestBody AuthRequestDTO loginRequest);
 
 }

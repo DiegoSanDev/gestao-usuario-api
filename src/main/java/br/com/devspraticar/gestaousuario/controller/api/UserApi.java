@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestaousuario.controller.api;
 
-import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDto;
-import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDto;
-import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDto;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,16 +19,16 @@ public interface UserApi {
         description = "Cria um novo usuário com os dados informados.",
         responses = {
             @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso",
-                    content = @Content(schema = @Schema(implementation = UserResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos",
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor",
                     content = @Content)
         }
     )
-    ResponseEntity<UserResponseDto> create(
+    ResponseEntity<UserResponseDTO> create(
         @Parameter(description = "Dados para criação do usuário", required = true)
-        UserRequestDto userRequestDto
+        UserRequestDTO userRequestDto
     );
 
     @Operation(
@@ -36,7 +36,7 @@ public interface UserApi {
         description = "Atualiza os dados de um usuário com o ID informado.",
         responses = {
             @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso",
-                    content = @Content(schema = @Schema(implementation = UserResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Dados de entrada inválidos",
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
@@ -45,9 +45,9 @@ public interface UserApi {
                     content = @Content)
         }
     )
-    ResponseEntity<UserResponseDto> update(
-        @Parameter(description = "Dados para atualização do usuário", required = true)
-        UserPutRequestDto userRequestDto, Long id
+    ResponseEntity<UserResponseDTO> update(
+            @Parameter(description = "Dados para atualização do usuário", required = true)
+            UserPutRequestDTO userRequestDto, Long id
     );
 
     @Operation(
@@ -55,14 +55,14 @@ public interface UserApi {
         description = "Retorna os dados de um usuário com base no ID informado.",
         responses = {
             @ApiResponse(responseCode = "200", description = "Usuário encontrado",
-                    content = @Content(schema = @Schema(implementation = UserResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor",
                     content = @Content)
         }
     )
-    ResponseEntity<UserResponseDto> findId(
+    ResponseEntity<UserResponseDTO> findId(
         @Parameter(description = "ID do usuário", required = true, example = "1")
         Long id
     );

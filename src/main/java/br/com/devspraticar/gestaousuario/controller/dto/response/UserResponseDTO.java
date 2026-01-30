@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record UserResponseDto(
+public record UserResponseDTO(
     Long id,
     String name,
     String email,
