@@ -62,6 +62,32 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 - src/test/java – Testes unitários e de integração
 - application.yaml – Configurações da aplicação
 
+## Estrutura de Pacotes
+
+| Pacote                                  | Responsabilidade                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **config**                              | Configurações globais da aplicação (Web, Security, Beans, Properties).                     |
+| **config.security**                     | Configurações relacionadas à segurança e autenticação da aplicação.                        |
+| config.security.SecurityConfig          | Configuração principal do Spring Security (filtros, rotas públicas, autenticação).         |
+| config.security.AuthManagerConfig       | Configuração do `AuthenticationManager`
+| config.security.JwtAuthenticationFilter | Filtro responsável por interceptar requisições e validar o token JWT.                      |
+| config.security.SecurityProperties      | Propriedades externas de segurança (JWT secret, expiração, etc).                           |
+| **controller**                          | Camada responsável por expor os endpoints REST.                                            |
+| controller.api                          | Define os contratos dos endpoints (interfaces), facilitando documentação e desacoplamento. |
+| controller.api.AuthApi                  | Contrato do endpoint de autenticação (login).                                              |
+| controller.api.UserApi                  | Contrato dos endpoints de gerenciamento de usuários.                                       |
+| **security**                            | Camada responsável por lógica de autenticação e autorização.                               |
+| security.service                        | Serviços relacionados à segurança da aplicação.                                            |
+| security.service.AuthService            | Serviço responsável pelo fluxo de autenticação e geração de token JWT.                     |
+| security.CustomUserDetailsService       | Implementação do `UserDetailsService` para integração com Spring Security.                 |
+| security.JwtTokenProvider               | Responsável por gerar, validar e extrair informações do token JWT.                         |
+| security.UserSecurity                   | Representação do usuário autenticado no contexto de segurança.                             |
+| **validator**                           | Camada responsável por validações de entrada HTTP (além do Bean Validation).               |
+| validator.InputValidation               | Interface base para validações de requisições.                                             |
+| validator.UserRequestInputValidation    | Validação específica das requisições relacionadas a usuário.                               |
+| validator.FieldValidator                | Utilitário para validação de campos e regras reutilizáveis.                                |
+
+
 ## Funcionalidades
 - Criar um Usuário
 - Atualizar um Usuário
