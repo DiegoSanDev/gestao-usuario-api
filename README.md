@@ -64,28 +64,28 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 
 ## Estrutura de Pacotes
 
-| Pacote                                  | Responsabilidade                                                                           |
-| --------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **config**                              | Configurações globais da aplicação (Web, Security, Beans, Properties).                     |
-| **config.security**                     | Configurações relacionadas à segurança e autenticação da aplicação.                        |
-| config.security.SecurityConfig          | Configuração principal do Spring Security (filtros, rotas públicas, autenticação).         |
-| config.security.AuthManagerConfig       | Configuração do `AuthenticationManager`
-| config.security.JwtAuthenticationFilter | Filtro responsável por interceptar requisições e validar o token JWT.                      |
-| config.security.SecurityProperties      | Propriedades externas de segurança (JWT secret, expiração, etc).                           |
-| **controller**                          | Camada responsável por expor os endpoints REST.                                            |
-| controller.api                          | Define os contratos dos endpoints (interfaces), facilitando documentação e desacoplamento. |
-| controller.api.AuthApi                  | Contrato do endpoint de autenticação (login).                                              |
-| controller.api.UserApi                  | Contrato dos endpoints de gerenciamento de usuários.                                       |
-| **security**                            | Camada responsável por lógica de autenticação e autorização.                               |
-| security.service                        | Serviços relacionados à segurança da aplicação.                                            |
-| security.service.AuthService            | Serviço responsável pelo fluxo de autenticação e geração de token JWT.                     |
-| security.CustomUserDetailsService       | Implementação do `UserDetailsService` para integração com Spring Security.                 |
-| security.JwtTokenProvider               | Responsável por gerar, validar e extrair informações do token JWT.                         |
-| security.UserSecurity                   | Representação do usuário autenticado no contexto de segurança.                             |
-| **validator**                           | Camada responsável por validações de entrada HTTP (além do Bean Validation).               |
-| validator.InputValidation               | Interface base para validações de requisições.                                             |
-| validator.UserRequestInputValidation    | Validação específica das requisições relacionadas a usuário.                               |
-| validator.FieldValidator                | Utilitário para validação de campos e regras reutilizáveis.                                |
+| Pacote                    | Responsabilidade                                                                                                      |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `config`                  | Configurações técnicas e de infraestrutura da aplicação.                                                              |
+| `config.security`         | Configuração do Spring Security (SecurityFilterChain, AuthenticationManager, filtros JWT, propriedades de segurança). |
+| `controller`              | Camada de entrada da aplicação. Responsável por expor os endpoints REST e orquestrar as requisições HTTP.             |
+| `controller.api`          | Interfaces que definem o contrato dos endpoints (base para controllers, Swagger/OpenAPI e testes).                    |
+| `controller.dto.request`  | DTOs de entrada da API (dados recebidos via HTTP).                                                                    |
+| `controller.dto.response` | DTOs de saída da API (dados retornados via HTTP).                                                                     |
+| `controller.validator`    | Validações específicas de entrada HTTP (formato, campos obrigatórios, validações sintáticas).                         |
+| `model`                   | Camada de domínio da aplicação. Contém regras de negócio e o estado central do sistema.                               |
+| `model.entity`            | Entidades do domínio (JPA). Representam o estado persistido da aplicação.                                             |
+| `model.service`           | Serviços de domínio. Implementam regras de negócio e casos de uso centrais.                                           |
+| `model.enums`             | Enumerações do domínio (tipos, estados, roles, etc.).                                                                 |
+| `repository`              | Camada de persistência. Interfaces JPA para acesso a dados.                                                           |
+| `security`                | Componentes relacionados à segurança da aplicação, isolados do MVC.                                                   |
+| `security.auth`           | Casos de uso de autenticação (login, geração/refresh de token).                                                       |
+| `security.jwt`            | Lógica de geração, validação e manipulação de tokens JWT.                                                             |
+| `security.userdetails`    | Adapters do Spring Security (`UserDetailsService`).                                                                   |
+| `security.model`          | Modelos de segurança (usuário autenticado, roles, authorities).                                                       |
+| `mapper`                  | Conversão de dados entre camadas (DTO ↔ Entity).                                                                      |
+| `exception`               | Exceções da aplicação e tratamento global de erros (`@ControllerAdvice`).                                             |
+
 
 
 ## Funcionalidades
