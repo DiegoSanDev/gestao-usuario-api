@@ -1,10 +1,11 @@
 package br.com.devspraticar.gestaousuario.controller;
 
+import br.com.devspraticar.gestaousuario.controller.api.AuthApi;
 import br.com.devspraticar.gestaousuario.controller.dto.request.AuthRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.request.RefreshTokenRequestDTO;
 import br.com.devspraticar.gestaousuario.controller.dto.response.AuthTokenResponseDTO;
 import br.com.devspraticar.gestaousuario.controller.validator.InputValidation;
-import br.com.devspraticar.gestaousuario.model.entity.User;
-import br.com.devspraticar.gestaousuario.controller.api.AuthApi;
+import br.com.devspraticar.gestaousuario.model.service.RefreshTokenService;
 import br.com.devspraticar.gestaousuario.security.auth.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,22 +18,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController implements AuthApi {
 
     private final AuthService authService;
+    private final RefreshTokenService refreshTokenService;
     private final InputValidation inputValidation;
 
     @Override
     public ResponseEntity<AuthTokenResponseDTO> authenticate(AuthRequestDTO loginRequest) {
         inputValidation.validate(loginRequest);
-        var user = User.builder()
-            .email(loginRequest.email())
-            .password(loginRequest.password())
-            .build();
-        var response = authService.authenticate(user);
+        var response = authService.authenticate(loginRequest.email(), loginRequest.password());
         var responseDto = AuthTokenResponseDTO.builder()
             .accessToken(response.getAccessToken())
+            .refreshToken(response.getRefreshToken())
             .expiresIn(response.getExpiresIn())
             .tokenType(response.getTokenType())
             .build();
         return ResponseEntity.ok(responseDto);
+    }
+
+    public ResponseEntity<AuthTokenResponseDTO> refreshToken(RefreshTokenRequestDTO request) {
+        inputValidation.validate(request);
+        var response = refreshTokenService.refreshToken(request.refreshToken());
+        var responseDTO = AuthTokenResponseDTO.builder()
+            .accessToken(response.getAccessToken())
+            .refreshToken(response.getRefreshToken())
+            .expiresIn(response.getExpiresIn())
+            .tokenType(response.getTokenType())
+            .build();
+        return ResponseEntity.ok(responseDTO);
     }
 
 }

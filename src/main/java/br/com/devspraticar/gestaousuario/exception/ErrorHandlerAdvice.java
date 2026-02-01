@@ -1,6 +1,8 @@
 package br.com.devspraticar.gestaousuario.exception;
 
 import br.com.devspraticar.gestaousuario.controller.dto.response.ErrorMessageDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.response.TokenErrorMessageDTO;
+import br.com.devspraticar.gestaousuario.model.enums.TokenErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,24 @@ public class ErrorHandlerAdvice {
     public ResponseEntity<ErrorMessageDTO> genericsError(InternalServerErrorException exception) {
         log.error("{}", exception.getErrorMessageDto());
         return ResponseEntity.internalServerError().body(exception.getErrorMessageDto());
+    }
+
+    @ExceptionHandler(TokenException.class)
+    public ResponseEntity<TokenErrorMessageDTO> handleTokenException(TokenException ex) {
+        if(TokenErrorType.INVALID.equals(ex.getTokenErrorType())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                TokenErrorMessageDTO.builder()
+                    .error(ex.getTokenErrorType().name())
+                    .message(ex.getMessage())
+                    .build()
+            );
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+            TokenErrorMessageDTO.builder()
+                .error(ex.getTokenErrorType().name())
+                .message(ex.getMessage())
+                .build()
+        );
     }
 
 }

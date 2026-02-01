@@ -1,5 +1,6 @@
 package br.com.devspraticar.gestaousuario.security.jwt;
 
+import br.com.devspraticar.gestaousuario.model.entity.Role;
 import br.com.devspraticar.gestaousuario.security.model.UserSecurity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -106,4 +107,26 @@ public class JwtTokenProvider {
         UserDetails userDetails = new User(username, "", authorities);
         return new UsernamePasswordAuthenticationToken(userDetails, token, authorities);
     }
+
+    public String generateTokenFromUser(br.com.devspraticar.gestaousuario.model.entity.User user) {
+
+        Date now = new Date();
+        Date expiry = new Date(now.getTime() + jwtExpirationMs);
+
+        List<String> roles = user.getRoles().stream()
+                .map(Role::getName)
+                .toList();
+
+        return Jwts.builder()
+            .setSubject(user.getEmail())
+            .setIssuer("gestao-usuario-api")
+            .claim(CLAIM_ROLES, roles)
+            .claim(CLAIM_USER_ID, user.getId())
+            .setIssuedAt(now)
+            .setExpiration(expiry)
+            .signWith(secretKey, SignatureAlgorithm.HS512)
+            .compact();
+    }
+
+
 }

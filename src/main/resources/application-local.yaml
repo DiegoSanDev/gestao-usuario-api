@@ -39,4 +39,5 @@ security:
   disable-security-headers: true
   jwt:
     secret: B8ktvSqMgl9YkG3kFAjQP8eEWWwEshBN2Ld8oJ7FsGCvl5gQK1SFmHMLp9tn2VJae8tbCKHBkGc
-    expirationMS: 3600000
+    expirationMS: 900000 # 15 minutos
+    refreshExpirationMS: 2592000000 # 30 dias
