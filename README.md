@@ -1,5 +1,7 @@
 # API RESTful de Gestão de Usuários com Spring Boot
 
+> **Em construção** - novos conteúdos serão adicionados gradualmente.
+
 Projeto de demonstração de uma API RESTful para gestão de usuários, construída com Java 21 e Spring Boot 3.3.5. Inclui operações CRUD, validação de dados e testes unitários.
 
 ## Índice
