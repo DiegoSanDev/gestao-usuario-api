@@ -1,13 +1,13 @@
 package br.com.devspraticar.gestaousuario.controller;
 
-import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDto;
-import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDto;
-import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDto;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDTO;
+import br.com.devspraticar.gestaousuario.controller.validator.InputValidation;
 import br.com.devspraticar.gestaousuario.model.entity.User;
 import br.com.devspraticar.gestaousuario.mapper.UserMapper;
 import br.com.devspraticar.gestaousuario.controller.api.UserApi;
 import br.com.devspraticar.gestaousuario.model.service.UserService;
-import br.com.devspraticar.gestaousuario.controller.validator.UserRequestInputValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,28 +25,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController implements UserApi {
 
     private final UserService userService;
-    private final UserRequestInputValidation inputValidation;
+    private final InputValidation inputValidation;
 
     @Override
     @PostMapping
-    public ResponseEntity<UserResponseDto> create(@RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<UserResponseDTO> create(@RequestBody UserRequestDTO userRequestDto) {
         inputValidation.validate(userRequestDto);
         User userEntity = userService.create(UserMapper.toEntity(userRequestDto));
-        UserResponseDto userResponse = UserMapper.toUserResponseDto(userEntity);
+        UserResponseDTO userResponse = UserMapper.toUserResponseDto(userEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDto> update(@RequestBody UserPutRequestDto userRequestDto, @PathVariable("id") Long id) {
+    public ResponseEntity<UserResponseDTO> update(@RequestBody UserPutRequestDTO userRequestDto, @PathVariable("id") Long id) {
+        inputValidation.validate(userRequestDto);
         User userUpdate = userService.update(UserMapper.toEntity(userRequestDto), id);
-        UserResponseDto userResponse = UserMapper.toUserResponseDto(userUpdate);
+        UserResponseDTO userResponse = UserMapper.toUserResponseDto(userUpdate);
         return ResponseEntity.ok(userResponse);
     }
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> findId(@PathVariable("id") Long id) {
+    public ResponseEntity<UserResponseDTO> findId(@PathVariable("id") Long id) {
         return ResponseEntity.ok(UserMapper.toUserResponseDto(userService.findById(id)));
     }
+
 }

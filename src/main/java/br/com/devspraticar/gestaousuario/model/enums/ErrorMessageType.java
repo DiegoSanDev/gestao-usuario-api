@@ -14,7 +14,7 @@ public enum ErrorMessageType {
     USER_NOT_ACTIVE("O usuário não está ativo."),
     USER_EMAIL_ALREADY_IN_USE("O email (%s) fornecido já está em uso por outro usuário."),
     GENERICS_ERROR("Falha inesperada no processamento da requisição."),
-    USER_VALIDATION_ERROR("Erro de validação nos dados fornecidos.");
+    INPUT_FIELDS_VALIDATION_ERROR("Erro de validação nos dados fornecidos.");
 
     private final String message;
 }

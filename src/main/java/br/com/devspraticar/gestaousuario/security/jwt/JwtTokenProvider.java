@@ -1,5 +1,6 @@
 package br.com.devspraticar.gestaousuario.security.jwt;
 
+import br.com.devspraticar.gestaousuario.model.entity.Role;
 import br.com.devspraticar.gestaousuario.security.model.UserSecurity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -31,6 +32,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
+    private static final String CLAIM_ROLES = "roles";
+    private static final String CLAIM_USER_ID = "user_id";
+
     @Value("${security.jwt.secret}")
     private String jwtSecret;
 
@@ -56,8 +60,9 @@ public class JwtTokenProvider {
 
         return Jwts.builder()
             .setSubject(userPrincipal.getUsername())
-            .claim("roles", roles)
-            .claim("ID", userPrincipal.getUser().getId())
+            .setIssuer("gestao-usuario-api")
+            .claim(CLAIM_ROLES, roles)
+            .claim(CLAIM_USER_ID, userPrincipal.getUser().getId())
             .setIssuedAt(now)
             .setExpiration(expiry)
             .signWith(secretKey, SignatureAlgorithm.HS512)
@@ -80,7 +85,7 @@ public class JwtTokenProvider {
         } catch (SignatureException e) {
             log.warn("Assinatura inválida", e);
         } catch (IllegalArgumentException e) {
-            log.warn("Token vazio", e);
+            log.warn("Token vazio ou nulo", e);
         }
         return false;
     }
@@ -93,7 +98,7 @@ public class JwtTokenProvider {
                 .getBody();
 
         String username = claims.getSubject();
-        List<String> roles = claims.get("roles", List.class);
+        List<String> roles = claims.get(CLAIM_ROLES, List.class);
 
         List<SimpleGrantedAuthority> authorities = roles.stream()
                 .map(SimpleGrantedAuthority::new)
@@ -102,4 +107,26 @@ public class JwtTokenProvider {
         UserDetails userDetails = new User(username, "", authorities);
         return new UsernamePasswordAuthenticationToken(userDetails, token, authorities);
     }
+
+    public String generateTokenFromUser(br.com.devspraticar.gestaousuario.model.entity.User user) {
+
+        Date now = new Date();
+        Date expiry = new Date(now.getTime() + jwtExpirationMs);
+
+        List<String> roles = user.getRoles().stream()
+                .map(Role::getName)
+                .toList();
+
+        return Jwts.builder()
+            .setSubject(user.getEmail())
+            .setIssuer("gestao-usuario-api")
+            .claim(CLAIM_ROLES, roles)
+            .claim(CLAIM_USER_ID, user.getId())
+            .setIssuedAt(now)
+            .setExpiration(expiry)
+            .signWith(secretKey, SignatureAlgorithm.HS512)
+            .compact();
+    }
+
+
 }

@@ -1,8 +1,8 @@
 package br.com.devspraticar.gestaousuario.mapper;
 
-import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDto;
-import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDto;
-import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDto;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserPutRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.request.UserRequestDTO;
+import br.com.devspraticar.gestaousuario.controller.dto.response.UserResponseDTO;
 import br.com.devspraticar.gestaousuario.model.entity.User;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserMapper {
 
-    public static User toEntity(UserRequestDto requestDto) {
+    public static User toEntity(UserRequestDTO requestDto) {
         return User.builder()
             .name(requestDto.name())
             .email(requestDto.email())
@@ -18,7 +18,7 @@ public class UserMapper {
             .build();
     }
 
-    public static User toEntity(UserPutRequestDto requestDto) {
+    public static User toEntity(UserPutRequestDTO requestDto) {
         return User.builder()
             .name(requestDto.name())
             .email(requestDto.email())
@@ -26,8 +26,8 @@ public class UserMapper {
             .build();
     }
 
-    public static UserResponseDto toUserResponseDto(User user) {
-        return UserResponseDto.builder()
+    public static UserResponseDTO toUserResponseDto(User user) {
+        return UserResponseDTO.builder()
             .id(user.getId())
             .name(user.getName())
             .email(user.getEmail())
