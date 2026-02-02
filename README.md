@@ -209,11 +209,22 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 ### Como funciona o fluxo de login?
     1. O usuário envia e-mail e senha via endpoint /auth/login.
     2. As credenciais são validadas pelo sistema.
-    3. É gerado um token JWT com informações de autenticação.
+    3. São gerados:
+        - Access Token (JWT) -> curto prazo
+        - Refresh Token -> longo prazo
     4. O cliente usa o token nas requisições futuras via header Authorization.
+    5. Quando o Access Token expira, o cliente utiliza o Refresh Token para obter novos tokens.
+    6. No logout, o Refresh Token é revogado.
+
+### Tipos de Token
+| Token             | Responsabilidade                                        |
+| ----------------- | ------------------------------------------------------- |
+| **Access Token**  | Autorizar requisições HTTP. Curta duração.              |
+| **Refresh Token** | Renovar tokens de acesso sem novo login. Longa duração. |
+
 
 ### Endpoint de Login
-1. Login 
+1. Autenticar Usuário 
    - POST /auth/login 
    - Request Body:
      - Headers
@@ -228,10 +239,11 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
      - Resposta (Status HTTP: 200 OK)
        ``` json 
        {
-         "accessToken": "eyJhbGciOiJIUzUxMiJ9...",
-         "tokenType": "Bearer",
-         "expiresIn": 900
-       }
+        "accessToken": "eyJhbGciOiJIUzUxMiJ9...",
+        "refreshToken": "8f3c7a1b-9c8e-4e7a-b9b0-...",
+        "tokenType": "Bearer",
+        "expiresIn": 900
+        }
      - Exemplo de requisição com cURL 
        ```
        curl --location 'http://localhost:8080/auth/login' \
@@ -241,6 +253,37 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
         "password": "SenhaForte123!"
         }'
        ```
+### Erros possíveis
+| Status | Descrição             |
+| ------ | --------------------- |
+| `400`  | Dados inválidos       |
+| `401`  | Credenciais inválidas |
+
+### Endpoint de Refresh Token
+1. Renovar Tokens
+   - POST /auth/refresh
+   - Descrição: Gera um novo Access Token e um novo Refresh Token.
+2. Request
+   - ```json
+     {
+      "refreshToken": "8f3c7a1b-9c8e-4e7a-b9b0-..."
+     }
+    ```
+3. Response
+    - ```json
+      {
+        "accessToken": "eyJhbGciOiJIUzUxMiJ9...",
+        "refreshToken": "b6d1c8a2-5c0e-4b9c-a9e1-...",
+        "tokenType": "Bearer",
+        "expiresIn": 900
+      }
+      ```
+### Erros possíveis
+| Status | Motivo                             |
+| ------ | ---------------------------------- |
+| `400`  | Refresh token ausente ou inválido  |
+| `401`  | Refresh token expirado ou revogado |
+
 ### Como usar o token JWT
 Após obter o token, envie-o no header:
 
