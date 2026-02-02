@@ -10,6 +10,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Tag(name = "User API", description = "Operações relacionadas ao gerenciamento de usuários")
 public interface UserApi {
@@ -62,7 +65,7 @@ public interface UserApi {
                     content = @Content)
         }
     )
-    ResponseEntity<UserResponseDTO> findId(
+    ResponseEntity<UserResponseDTO> findById(
         @Parameter(description = "ID do usuário", required = true, example = "1")
         Long id
     );

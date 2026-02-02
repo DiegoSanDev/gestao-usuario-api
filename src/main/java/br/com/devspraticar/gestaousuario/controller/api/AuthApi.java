@@ -50,7 +50,6 @@ public interface AuthApi {
             )
         }
     )
-    @PostMapping("/login")
     ResponseEntity<AuthTokenResponseDTO> authenticate(@RequestBody AuthRequestDTO loginRequest);
 
     @Operation(
@@ -86,7 +85,37 @@ public interface AuthApi {
             )
         }
     )
-    @PostMapping("/refresh")
     ResponseEntity<AuthTokenResponseDTO> refreshToken(@RequestBody RefreshTokenRequestDTO request);
+
+
+    @Operation(
+        summary = "Encerrar sessão do usuário (logout)",
+        description = """
+        Realiza o logout do usuário revogando o refresh token informado.
+        
+        Comportamento:
+        - O refresh token é marcado como revogado
+        - Novas tentativas de refresh com este token serão rejeitadas
+        - O access token atual continuará válido até expirar
+        
+        Observações:
+        - Endpoint idempotente: múltiplas chamadas com o mesmo token não causam erro
+        """,
+        responses = {
+            @ApiResponse(
+                responseCode = "204",
+                description = "Logout realizado com sucesso (refresh token revogado)"
+            ),
+            @ApiResponse(
+                responseCode = "400",
+                description = "Refresh token não informado ou formato inválido",
+                content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorMessageDTO.class)
+                )
+            )
+        }
+    )
+    ResponseEntity<Void> logout(@RequestBody RefreshTokenRequestDTO request);
 
 }

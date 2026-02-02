@@ -47,7 +47,7 @@ public class UserController implements UserApi {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> findId(@PathVariable("id") Long id) {
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(UserMapper.toUserResponseDto(userService.findById(id)));
     }
 
