@@ -37,7 +37,7 @@ public class ErrorHandlerAdvice {
 
     @ExceptionHandler(TokenException.class)
     public ResponseEntity<TokenErrorMessageDTO> handleTokenException(TokenException ex) {
-        if(TokenErrorType.INVALID.equals(ex.getTokenErrorType())) {
+        if(TokenErrorType.NON_EXISTENT.equals(ex.getTokenErrorType())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 TokenErrorMessageDTO.builder()
                     .error(ex.getTokenErrorType().name())

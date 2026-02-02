@@ -1,7 +1,7 @@
 package br.com.devspraticar.gestaousuario.model.enums;
 
 public enum TokenErrorType {
-    INVALID,
+    NON_EXISTENT,
     EXPIRED,
     REVOKED
 }

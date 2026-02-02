@@ -45,5 +45,4 @@ public class RefreshToken implements Serializable {
     @Column(nullable = false)
     private boolean revoked;
 
-    private String replacedByToken;
 }

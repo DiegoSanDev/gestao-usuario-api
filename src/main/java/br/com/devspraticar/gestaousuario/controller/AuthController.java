@@ -9,6 +9,7 @@ import br.com.devspraticar.gestaousuario.model.service.RefreshTokenService;
 import br.com.devspraticar.gestaousuario.security.auth.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,7 @@ public class AuthController implements AuthApi {
     private final InputValidation inputValidation;
 
     @Override
+    @PostMapping("/login")
     public ResponseEntity<AuthTokenResponseDTO> authenticate(AuthRequestDTO loginRequest) {
         inputValidation.validate(loginRequest);
         var response = authService.authenticate(loginRequest.email(), loginRequest.password());
@@ -34,6 +36,8 @@ public class AuthController implements AuthApi {
         return ResponseEntity.ok(responseDto);
     }
 
+    @Override
+    @PostMapping("/refresh")
     public ResponseEntity<AuthTokenResponseDTO> refreshToken(RefreshTokenRequestDTO request) {
         inputValidation.validate(request);
         var response = refreshTokenService.refreshToken(request.refreshToken());
@@ -46,4 +50,11 @@ public class AuthController implements AuthApi {
         return ResponseEntity.ok(responseDTO);
     }
 
+    @Override
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(RefreshTokenRequestDTO request) {
+        inputValidation.validate(request);
+        refreshTokenService.logout(request.refreshToken());
+        return ResponseEntity.noContent().build();
+    }
 }

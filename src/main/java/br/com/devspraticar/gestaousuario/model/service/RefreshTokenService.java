@@ -6,7 +6,6 @@ import br.com.devspraticar.gestaousuario.model.entity.RefreshToken;
 import br.com.devspraticar.gestaousuario.model.entity.User;
 import br.com.devspraticar.gestaousuario.model.enums.TokenErrorType;
 import br.com.devspraticar.gestaousuario.repository.RefreshTokenRepository;
-import br.com.devspraticar.gestaousuario.security.auth.AuthService;
 import br.com.devspraticar.gestaousuario.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,10 +58,15 @@ public class RefreshTokenService {
         refreshTokenRepository.save(token);
     }
 
+    public void logout(String refreshToken) {
+        RefreshToken token = findByToken(refreshToken);
+        if(!token.isRevoked()) {
+            revoke(token);
+        }
+    }
+
     private RefreshToken validate(String token) {
-        RefreshToken refreshToken = refreshTokenRepository
-            .findByToken(token)
-            .orElseThrow(() -> new TokenException(TokenErrorType.INVALID, "Refresh token inválido"));
+        RefreshToken refreshToken = findByToken(token);
 
         if (refreshToken.isRevoked()) {
             throw new TokenException(TokenErrorType.REVOKED, "Refresh token revogado");
@@ -73,6 +77,12 @@ public class RefreshTokenService {
         }
 
         return refreshToken;
+    }
+
+    private RefreshToken findByToken(String token) {
+        return refreshTokenRepository
+            .findByToken(token)
+            .orElseThrow(() -> new TokenException(TokenErrorType.NON_EXISTENT, "Refresh token não encontrado"));
     }
 
 }
