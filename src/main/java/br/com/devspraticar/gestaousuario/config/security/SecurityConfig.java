@@ -34,15 +34,22 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .httpBasic(AbstractHttpConfigurer::disable)
             .formLogin(AbstractHttpConfigurer::disable)
-            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(securityProperties.getPublicEndpoints().toArray(new String[0])).permitAll()
-                .requestMatchers(POST, "/v1/users").permitAll()
                 .requestMatchers(POST, "/auth/login").permitAll()
+                .requestMatchers(POST, "/auth/refresh").permitAll()
+                .requestMatchers(POST, "/auth/logout").permitAll()
+                .requestMatchers(POST, "/v1/users").permitAll()
                 .requestMatchers(GET, "/v1/users/**").hasAuthority(ROLE_USER.name())
                 .requestMatchers(PUT, "/v1/users/**").hasAuthority(ROLE_USER.name())
                 .anyRequest().authenticated()
-            ).addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+            ).addFilterBefore(
+                new JwtAuthenticationFilter(jwtTokenProvider),
+                 UsernamePasswordAuthenticationFilter.class
+            );
 
          if(securityProperties.isDisableSecurityHeaders()) {
              httpSecurity.headers(AbstractHttpConfigurer::disable);

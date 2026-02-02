@@ -10,9 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Tag(name = "User API", description = "Operações relacionadas ao gerenciamento de usuários")
 public interface UserApi {
@@ -48,9 +46,10 @@ public interface UserApi {
                     content = @Content)
         }
     )
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER', 'ROLE_MODERATOR')")
     ResponseEntity<UserResponseDTO> update(
-            @Parameter(description = "Dados para atualização do usuário", required = true)
-            UserPutRequestDTO userRequestDto, Long id
+        @Parameter(description = "Dados para atualização do usuário", required = true)
+        UserPutRequestDTO userRequestDto, Long id
     );
 
     @Operation(
@@ -65,6 +64,7 @@ public interface UserApi {
                     content = @Content)
         }
     )
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER', 'ROLE_MODERATOR')")
     ResponseEntity<UserResponseDTO> findById(
         @Parameter(description = "ID do usuário", required = true, example = "1")
         Long id

@@ -8,6 +8,7 @@ import br.com.devspraticar.gestaousuario.model.entity.User;
 import br.com.devspraticar.gestaousuario.mapper.UserMapper;
 import br.com.devspraticar.gestaousuario.controller.api.UserApi;
 import br.com.devspraticar.gestaousuario.model.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/users")
+@SecurityRequirement(name = "bearerAuth")
 @RequiredArgsConstructor
 public class UserController implements UserApi {
 
