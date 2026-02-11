@@ -39,9 +39,9 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(securityProperties.getPublicEndpoints().toArray(new String[0])).permitAll()
-                .requestMatchers(POST, "/auth/login").permitAll()
-                .requestMatchers(POST, "/auth/refresh").permitAll()
-                .requestMatchers(POST, "/auth/logout").permitAll()
+                .requestMatchers(POST, "/v1/auth/login").permitAll()
+                .requestMatchers(POST, "/v1/auth/refresh").permitAll()
+                .requestMatchers(POST, "/v1/auth/logout").permitAll()
                 .requestMatchers(POST, "/v1/users").permitAll()
                 .requestMatchers(GET, "/v1/users/**").hasAuthority(ROLE_USER.name())
                 .requestMatchers(PUT, "/v1/users/**").hasAuthority(ROLE_USER.name())

@@ -5,6 +5,7 @@ import br.com.devspraticar.gestaousuario.controller.dto.request.AuthRequestDTO;
 import br.com.devspraticar.gestaousuario.controller.dto.request.RefreshTokenRequestDTO;
 import br.com.devspraticar.gestaousuario.controller.dto.response.AuthTokenResponseDTO;
 import br.com.devspraticar.gestaousuario.controller.validator.InputValidation;
+import br.com.devspraticar.gestaousuario.mapper.AuthMapper;
 import br.com.devspraticar.gestaousuario.model.service.RefreshTokenService;
 import br.com.devspraticar.gestaousuario.security.auth.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/v1/auth")
 @RequiredArgsConstructor
 public class AuthController implements AuthApi {
 
@@ -26,27 +27,17 @@ public class AuthController implements AuthApi {
     @PostMapping("/login")
     public ResponseEntity<AuthTokenResponseDTO> authenticate(AuthRequestDTO loginRequest) {
         inputValidation.validate(loginRequest);
-        var response = authService.authenticate(loginRequest.email(), loginRequest.password());
-        var responseDto = AuthTokenResponseDTO.builder()
-            .accessToken(response.getAccessToken())
-            .refreshToken(response.getRefreshToken())
-            .expiresIn(response.getExpiresIn())
-            .tokenType(response.getTokenType())
-            .build();
-        return ResponseEntity.ok(responseDto);
+        var authToken = authService.authenticate(loginRequest.email(), loginRequest.password());
+        var responseDTO = AuthMapper.toResponse(authToken);
+        return ResponseEntity.ok(responseDTO);
     }
 
     @Override
     @PostMapping("/refresh")
     public ResponseEntity<AuthTokenResponseDTO> refreshToken(RefreshTokenRequestDTO request) {
         inputValidation.validate(request);
-        var response = refreshTokenService.refreshToken(request.refreshToken());
-        var responseDTO = AuthTokenResponseDTO.builder()
-            .accessToken(response.getAccessToken())
-            .refreshToken(response.getRefreshToken())
-            .expiresIn(response.getExpiresIn())
-            .tokenType(response.getTokenType())
-            .build();
+        var authToken = refreshTokenService.refreshToken(request.refreshToken());
+        var responseDTO = AuthMapper.toResponse(authToken);
         return ResponseEntity.ok(responseDTO);
     }
 

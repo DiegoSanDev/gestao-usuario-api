@@ -114,8 +114,8 @@ public class JwtTokenProvider {
         Date expiry = new Date(now.getTime() + jwtExpirationMs);
 
         List<String> roles = user.getRoles().stream()
-                .map(Role::getName)
-                .toList();
+            .map(Role::getName)
+            .toList();
 
         return Jwts.builder()
             .setSubject(user.getEmail())
